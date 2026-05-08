@@ -1,0 +1,93 @@
+INSERT INTO AIRPORT VALUES
+('APT_SYD', 'SYD', 'Sydney Airport', 'Sydney', 'Australia'),
+('APT_MEL', 'MEL', 'Melbourne Airport', 'Melbourne', 'Australia'),
+('APT_BNE', 'BNE', 'Brisbane Airport', 'Brisbane', 'Australia'),
+('APT_OOL', 'OOL', 'Gold Coast Airport', 'Gold Coast', 'Australia'),
+('APT_CNS', 'CNS', 'Cairns Airport', 'Cairns', 'Australia'),
+('APT_ADL', 'ADL', 'Adelaide Airport', 'Adelaide', 'Australia'),
+('APT_HBA', 'HBA', 'Hobart Airport', 'Hobart', 'Australia'),
+('APT_PER', 'PER', 'Perth Airport', 'Perth', 'Australia'),
+('APT_TSV', 'TSV', 'Townsville Airport', 'Townsville', 'Australia'),
+('APT_MCY', 'MCY', 'Sunshine Coast Airport', 'Sunshine Coast', 'Australia');
+
+INSERT INTO ROUTE VALUES
+('SYD_MEL', 'APT_SYD', 'APT_MEL', '01:35'),
+('MEL_SYD', 'APT_MEL', 'APT_SYD', '01:25'),
+('SYD_OOL', 'APT_SYD', 'APT_OOL', '01:20'),
+('OOL_SYD', 'APT_OOL', 'APT_SYD', '01:30'),
+('SYD_CNS', 'APT_SYD', 'APT_CNS', '03:05'),
+('CNS_SYD', 'APT_CNS', 'APT_SYD', '03:00'),
+('MEL_BNE', 'APT_MEL', 'APT_BNE', '02:10'),
+('BNE_MEL', 'APT_BNE', 'APT_MEL', '02:25'),
+('MEL_HBA', 'APT_MEL', 'APT_HBA', '01:15'),
+('HBA_MEL', 'APT_HBA', 'APT_MEL', '01:20'),
+('ADL_MEL', 'APT_ADL', 'APT_MEL', '01:20'),
+('MEL_ADL', 'APT_MEL', 'APT_ADL', '01:25'),
+('BNE_CNS', 'APT_BNE', 'APT_CNS', '02:20'),
+('CNS_BNE', 'APT_CNS', 'APT_BNE', '02:15'),
+('SYD_TSV', 'APT_SYD', 'APT_TSV', '02:40'),
+('TSV_SYD', 'APT_TSV', 'APT_SYD', '02:40');
+
+INSERT INTO MODELSPECS VALUES
+('B38M', 182, 81374),
+('B738', 176, 78240),
+('B737', 134, 70080),
+('E219', 100, 56400);
+
+
+INSERT INTO AIRCRAFT VALUES
+('VH-FDA', 'B38M'),
+('VH-FDB', 'B38M'),
+('VH-FDC', 'B738'),
+('VH-FDD', 'B737'),
+('VH-FDE', 'E219');
+
+
+INSERT INTO FLIGHT VALUES
+('FD101_20260509', 'SYD_MEL', 'VH-FDA', '2026-05-09', '07:00', 89),
+('FD102_20260509', 'MEL_SYD', 'VH-FDB', '2026-05-09', '09:20', 95),
+('FD201_20260510', 'SYD_OOL', 'VH-FDC', '2026-05-10', '10:15', 109),
+('FD202_20260510', 'OOL_SYD', 'VH-FDD', '2026-05-10', '13:05', 115),
+('FD301_20260511', 'SYD_CNS', 'VH-FDA', '2026-05-11', '06:10', 189),
+('FD302_20260511', 'CNS_SYD', 'VH-FDE', '2026-05-11', '11:45', 199),
+('FD401_20260512', 'MEL_BNE', 'VH-FDB', '2026-05-12', '08:30', 129),
+('FD402_20260512', 'BNE_MEL', 'VH-FDC', '2026-05-12', '14:10', 139),
+('FD501_20260513', 'MEL_HBA', 'VH-FDD', '2026-05-13', '07:45', 79),
+('FD502_20260513', 'HBA_MEL', 'VH-FDE', '2026-05-13', '16:20', 85),
+
+('FD101_20260516', 'SYD_MEL', 'VH-FDA', '2026-05-16', '07:00', 92),
+('FD102_20260516', 'MEL_SYD', 'VH-FDB', '2026-05-16', '09:20', 98),
+('FD201_20260517', 'SYD_OOL', 'VH-FDC', '2026-05-17', '10:15', 112),
+('FD202_20260517', 'OOL_SYD', 'VH-FDD', '2026-05-17', '13:05', 118),
+('FD301_20260518', 'SYD_CNS', 'VH-FDA', '2026-05-18', '06:10', 195),
+('FD302_20260518', 'CNS_SYD', 'VH-FDE', '2026-05-18', '11:45', 205),
+('FD401_20260519', 'MEL_BNE', 'VH-FDB', '2026-05-19', '08:30', 135),
+('FD402_20260519', 'BNE_MEL', 'VH-FDC', '2026-05-19', '14:10', 145),
+('FD501_20260520', 'MEL_HBA', 'VH-FDD', '2026-05-20', '07:45', 82),
+('FD502_20260520', 'HBA_MEL', 'VH-FDE', '2026-05-20', '16:20', 88),
+
+('FD601_20260521', 'ADL_MEL', 'VH-FDA', '2026-05-21', '06:50', 75),
+('FD602_20260521', 'MEL_ADL', 'VH-FDB', '2026-05-21', '18:15', 79),
+('FD701_20260522', 'BNE_CNS', 'VH-FDC', '2026-05-22', '09:10', 145),
+('FD702_20260522', 'CNS_BNE', 'VH-FDD', '2026-05-22', '12:40', 149),
+('FD801_20260525', 'SYD_TSV', 'VH-FDE', '2026-05-25', '08:00', 101),
+
+('FD101_20260523', 'SYD_MEL', 'VH-FDA', '2026-05-23', '07:00', 96),
+('FD102_20260523', 'MEL_SYD', 'VH-FDB', '2026-05-23', '09:20', 102),
+('FD201_20260524', 'SYD_OOL', 'VH-FDC', '2026-05-24', '10:15', 119),
+('FD202_20260524', 'OOL_SYD', 'VH-FDD', '2026-05-24', '13:05', 124),
+('FD301_20260525', 'SYD_CNS', 'VH-FDA', '2026-05-25', '06:10', 205),
+
+('FD101_20260530', 'SYD_MEL', 'VH-FDA', '2026-05-30', '07:00', 99),
+('FD102_20260530', 'MEL_SYD', 'VH-FDB', '2026-05-30', '09:20', 105),
+('FD201_20260531', 'SYD_OOL', 'VH-FDC', '2026-05-31', '10:15', 125),
+('FD202_20260531', 'OOL_SYD', 'VH-FDD', '2026-05-31', '13:05', 128),
+
+('FD101_20260606', 'SYD_MEL', 'VH-FDA', '2026-06-06', '07:00', 105),
+('FD102_20260606', 'MEL_SYD', 'VH-FDB', '2026-06-06', '09:20', 109),
+('FD201_20260607', 'SYD_OOL', 'VH-FDC', '2026-06-07', '10:15', 132),
+('FD202_20260607', 'OOL_SYD', 'VH-FDD', '2026-06-07', '13:05', 135),
+('FD301_20260608', 'SYD_CNS', 'VH-FDA', '2026-06-08', '06:10', 215),
+('FD302_20260608', 'CNS_SYD', 'VH-FDE', '2026-06-08', '11:45', 220),
+('FD401_20260609', 'MEL_BNE', 'VH-FDB', '2026-06-09', '08:30', 149),
+('FD402_20260609', 'BNE_MEL', 'VH-FDC', '2026-06-09', '14:10', 155);
