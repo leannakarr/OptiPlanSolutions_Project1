@@ -1,4 +1,10 @@
 class Flight{
+    /* class flight has two static lists one of all flights and a second with searched
+    flights for flights that meet the flight consitions. flights have route, aircraft,
+    date time and price. there are two methods one gives the information that appears
+    when the flight is displayed as a searched option and the other displays the extra
+    flight data when the flight is selected two static methods one fills the search flight
+    array to have flights that meet the conditions the other sorts flights*/
     static flightList = [];
     static searchedFlightList = [];
 
@@ -15,7 +21,7 @@ class Flight{
     } 
 
     static getSearchedFlight(route, date){
-        this.searchedFlightList = [];
+        Flight.searchedFlightList = [];
         for(let f of Flight.flightList){
             if(f.route === route && f.date === date){
                 Flight.searchedFlightList.push(f);
@@ -23,16 +29,18 @@ class Flight{
         }
     }
 
-    static sortFlight(sortBy){
+    //sort flight method will take the option of sought by and arainge the flights 
+    //defult sort time
+    static sortFlight(sortBy = "time"){
         if(sortBy==="time"){
-            Flight.flightList.sort((a,b)=> a.time.localeCompare(b.time));}
+            Flight.searchedFlightList.sort((a,b)=> a.time.localeCompare(b.time));}
         else if(sortBy === "price"){
-            flight.flightList.sort((a,b)=> a.price - b.price);
+            flight.searchedFlightList.sort((a,b)=> a.price - b.price);
         }
     }
 
 
-    //html flight info display card
+    //html flight info display for the search options
     createflightCard(){
         const card = document.createElement("div");
         card.className = "flight-card";
@@ -46,6 +54,8 @@ class Flight{
         `;
     return card
     }
+
+    //html flight information for when the flight is clicked on
     createinformationCard1(){
         const card = document.createElement("div");
         card.className = "info-card";
@@ -66,13 +76,14 @@ class Flight{
         `;
     }
 
+    //display method for flights that had been searched for 
     static displayFlights(){
         const container = 
         document.getElementById("flightResults");
 
         container.innerHTML = "";
         for(let f of Flight.searchedFlightList){
-            container.appendChild(f.createCard());
+            container.appendChild(f.createFlightCard());
         }
     } 
 }
