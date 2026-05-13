@@ -1,4 +1,4 @@
-class Airport{
+export default class Airport{
     /* class airport has airport code name city and country it creates an id
     useing the unique code. the airport has a list of destinations, this will be 
     used in the search bar when offering recomendations when inputting the arival 
