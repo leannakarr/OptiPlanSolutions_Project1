@@ -1,4 +1,7 @@
 class Route{
+    /* class route  has departure and arival airport and the time, it creates 
+    an id from the airport when a route is added the arival airport is added to 
+    the departure airports destenation list*/
     constructor(departureAirport, arrivalAirport, expectedTime){
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;

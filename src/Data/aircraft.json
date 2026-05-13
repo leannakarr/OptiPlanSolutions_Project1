@@ -1,0 +1,22 @@
+[
+    { 
+        "aircraftId": "VH-FDA", 
+        "aircraftModel": "B38M" 
+    },
+    { 
+        "aircraftId": "VH-FDB", 
+        "aircraftModel": "B38M" 
+    },
+    { 
+        "aircraftId": "VH-FDC", 
+        "aircraftModel": "B738" 
+    },
+    { 
+        "aircraftId": "VH-FDD",
+        "aircraftModel": "B737" 
+    }, 
+    { 
+        "aircraftId": "VH-FDE", 
+        "aircraftModel": "E219" 
+    }
+]
