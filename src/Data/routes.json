@@ -1,0 +1,82 @@
+[
+    {
+        "departureAirport": "SYD", 
+        "arrivalAirport": "MEL", 
+        "expectedTime": "01:35"
+    },
+    { 
+        "departureAirport": "MEL",
+        "arrivalAirport": "SYD",
+        "expectedTime": "01:25"
+    },
+    { 
+        "departureAirport": "SYD",
+        "arrivalAirport": "OOL", 
+        "expectedTime": "01:20" 
+    },
+    { 
+        "departureAirport": "OOL",
+         "arrivalAirport": "SYD", 
+         "expectedTime": "01:30" 
+    },
+    { 
+        "departureAirport": "SYD",
+        "arrivalAirport": "CNS", 
+        "expectedTime": "03:05" 
+    },
+    { 
+        "departureAirport": "CNS", 
+        "arrivalAirport": "SYD", 
+        "expectedTime": "03:00" 
+    },
+    { 
+        "departureAirport": "MEL", 
+        "arrivalAirport": "BNE", 
+        "expectedTime": "02:10" 
+    },
+    { 
+        "departureAirport": "BNE",
+        "arrivalAirport": "MEL", 
+        "expectedTime": "02:25" 
+    },
+    { 
+        "departureAirport": "MEL", 
+        "arrivalAirport": "HBA", 
+        "expectedTime": "01:15" 
+    },
+    { 
+        "departureAirport": "HBA", 
+        "arrivalAirport": "MEL", 
+        "expectedTime": "01:20" 
+    },
+    { 
+        "departureAirport": "ADL",
+        "arrivalAirport": "MEL", 
+        "expectedTime": "01:20" 
+    },
+    { 
+        "departureAirport": "MEL", 
+        "arrivalAirport": "ADL", 
+        "expectedTime": "01:25" 
+    },
+    { 
+        "departureAirport": "BNE", 
+        "arrivalAirport": "CNS", 
+        "expectedTime": "02:20" 
+    },
+    { 
+        "departureAirport": "CNS", 
+        "arrivalAirport": "BNE", 
+        "expectedTime": "02:15" 
+    },
+    { 
+        "departureAirport": "SYD", 
+        "arrivalAirport": "TSV", 
+        "expectedTime": "02:40" 
+    },
+    { 
+        "departureAirport": "TSV", 
+        "arrivalAirport": "SYD", 
+        "expectedTime": "02:40" 
+    }
+]
