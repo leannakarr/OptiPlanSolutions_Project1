@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Test</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .flight-card {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 8px 14px;
+            background: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Flight Search Test</h1>
+
+    <button onclick="searchFlights()">Search SYD to MEL</button>
+    <button onclick="sortByPrice()">Sort by price</button>
+
+    <div id="flightResults"></div>
+
+    <script>
+        class Aircraft {
+            constructor(aircraftId, aircraftModel) {
+                this.aircraftId = aircraftId;
+                this.aircraftModel = aircraftModel;
+            }
+        }
+
+        class Airport {
+            constructor(airportCode, airportName, city, country) {
+                this.airportCode = airportCode;
+                this.airportName = airportName;
+                this.city = city;
+                this.country = country;
+                this.id = "APT_" + this.airportCode;
+                this.destenations = [];
+            }
+
+            addDestination(airport) {
+                this.destenations.push(airport);
+            }
+        }
+
+        class ModelSpecs {
+            constructor(modelId, modelString, totalSeats, takeOfWeight) {
+                this.modelID = modelId;
+                this.totalSeats = totalSeats;
+                this.takeOfWeight = takeOfWeight;
+                this.modelString = modelString;
+            }
+        }
+
+        class Route {
+            constructor(departureAirport, arrivalAirport, expectedTime) {
+                this.departureAirport = departureAirport;
+                this.arrivalAirport = arrivalAirport;
+                this.expectedTime = expectedTime;
+                this.id = `${departureAirport.airportCode}_${arrivalAirport.airportCode}`;
+                this.departureAirport.addDestination(arrivalAirport);
+            }
+        }
+
+        class Flight {
+            static flightList = [];
+            static searchedFlightList = [];
+
+            constructor(id, route, aircraft, date, time, price) {
+                this.id = id;
+                this.route = route;
+                this.aircraft = aircraft;
+                this.date = date;
+                this.time = time;
+                this.price = price;
+                this.bookedSeats = [];
+                this.currentWeight = 0;
+
+                Flight.flightList.push(this);
+            }
+
+            static getSearchedFlight(route, date) {
+                Flight.searchedFlightList = [];
+
+                for (let f of Flight.flightList) {
+                    if (f.route === route && f.date === date) {
+                        Flight.searchedFlightList.push(f);
+                    }
+                }
+            }
+
+            static sortFlight(sortBy = "time") {
+                if (sortBy === "time") {
+                    Flight.searchedFlightList.sort((a, b) =>
+                        a.time.localeCompare(b.time)
+                    );
+                } else if (sortBy === "price") {
+                    Flight.searchedFlightList.sort((a, b) =>
+                        a.price - b.price
+                    );
+                }
+            }
+
+            createFlightCard() {
+                const card = document.createElement("div");
+                card.className = "flight-card";
+
+                card.innerHTML = `
+                    <h3>
+                        ${this.route.departureAirport.airportCode}
+                        →
+                        ${this.route.arrivalAirport.airportCode}
+                    </h3>
+
+                    <p>Date: ${this.date}</p>
+                    <p>Time: ${this.time}</p>
+                    <p>Price: $${this.price}</p>
+                    <p>Aircraft: ${this.aircraft.aircraftModel.modelString}</p>
+                `;
+
+                return card;
+            }
+
+            static displayFlights() {
+                const container = document.getElementById("flightResults");
+
+                container.innerHTML = "";
+
+                for (let f of Flight.searchedFlightList) {
+                    container.appendChild(f.createFlightCard());
+                }
+            }
+        }
+
+        const syd = new Airport("SYD", "Sydney Airport", "Sydney", "Australia");
+        const mel = new Airport("MEL", "Melbourne Airport", "Melbourne", "Australia");
+
+        const model = new ModelSpecs("B738", "Boeing 737-800", 176, 78240);
+        const aircraft = new Aircraft("VH-FDC", model);
+
+        const sydMel = new Route(syd, mel, "01:35");
+
+        new Flight("FD101", sydMel, aircraft, "2026-05-09", "07:00", 89);
+        new Flight("FD102", sydMel, aircraft, "2026-05-09", "09:20", 95);
+        new Flight("FD103", sydMel, aircraft, "2026-05-09", "06:30", 120);
+
+        function searchFlights() {
+            Flight.getSearchedFlight(sydMel, "2026-05-09");
+            Flight.sortFlight("time");
+            Flight.displayFlights();
+        }
+
+        function sortByPrice() {
+            Flight.sortFlight("price");
+            Flight.displayFlights();
+        }
+    </script>
+
+</body>
+</html>
