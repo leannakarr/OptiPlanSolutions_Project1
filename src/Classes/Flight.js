@@ -1,4 +1,4 @@
-class Flight{
+export default class Flight{
     /* class flight has two static lists one of all flights and a second with searched
     flights for flights that meet the flight consitions. flights have route, aircraft,
     date time and price. there are two methods one gives the information that appears
@@ -35,13 +35,13 @@ class Flight{
         if(sortBy==="time"){
             Flight.searchedFlightList.sort((a,b)=> a.time.localeCompare(b.time));}
         else if(sortBy === "price"){
-            flight.searchedFlightList.sort((a,b)=> a.price - b.price);
+            Flight.searchedFlightList.sort((a,b)=> a.price - b.price);
         }
     }
 
 
     //html flight info display for the search options
-    createflightCard(){
+    createFlightCard(){
         const card = document.createElement("div");
         card.className = "flight-card";
         card.innerHTML = `
@@ -61,19 +61,20 @@ class Flight{
         card.className = "info-card";
         card.innerHTML=`
         <p>
-        <Strong>${this.flightid}</Strong></p>
+        <Strong>${this.id}</Strong></p>
         ${this.route.expectedTime}
         </p>
 
         <p> 
         <Strong>Stops</Strong>
-        1 stop (${this.route.arrivalAirport.code})
+        1 stop (${this.route.arrivalAirport.airportCode})
         </p> | one <p/></>
         <p>
         <Stong>Aircraft</Strong> 
-        ${this.aircraft.toString()} 
+        ${this.aircraft.aircraftModel.modelString} 
         <p/>
         `;
+        return card;
     }
 
     //display method for flights that had been searched for 

@@ -1,21 +1,25 @@
 [
     { 
-        "modelId": "B38M", 
+        "modelId": "B38M",
+        "modelString": "Boeing 737-8", 
         "totalSeats": 182, 
         "takeOfWeight": 81374 
     },
     { 
-        "modelId": "B738", 
+        "modelId": "B738",
+        "modelString": "Boeing 737-800",  
         "totalSeats": 176, 
         "takeOfWeight": 78240 
     },
     { 
-        "modelId": "B737", 
+        "modelId": "B737",
+        "modelString": "Boeing 737-700",  
         "totalSeats": 134, 
         "takeOfWeight": 70080   
     },
     { 
-        "modelId": "E219", 
+        "modelId": "E219",
+        "modelString": "Embraer 190 E2",  
         "totalSeats": 100, 
         "takeOfWeight": 56400 
     }
