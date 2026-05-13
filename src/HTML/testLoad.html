@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Test</title>
+</head>
+
+<body>
+    <h1>Flight Test</h1>
+
+    <button id="loadBtn">Load flights</button>
+    <button id="showBtn">Show all flights</button>
+
+    <div id="flightResults"></div>
+
+    <script type="module">
+        import { loadData } from "../Classes/loadData.js";
+        import Flight from "../Classes/Flight.js";
+
+        document.getElementById("loadBtn").addEventListener("click", async () => {
+            await loadData();
+            console.log("Loaded flights:", Flight.flightList);
+            alert("Loaded " + Flight.flightList.length + " flights");
+        });
+
+        document.getElementById("showBtn").addEventListener("click", () => {
+            Flight.searchedFlightList = Flight.flightList;
+            Flight.displayFlights();
+        });
+    </script>
+</body>
+</html>

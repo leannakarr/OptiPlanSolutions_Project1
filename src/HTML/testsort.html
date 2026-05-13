@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Sorting Test</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        button{
+            padding: 10px;
+            margin-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        .flight-card{
+            background: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Flight Sorting Test</h1>
+
+    <button id="loadBtn">Load Flights</button>
+
+    <button id="timeBtn">Sort by Time</button>
+
+    <button id="priceBtn">Sort by Price</button>
+
+    <div id="flightResults"></div>
+
+    <script type="module">
+
+        import { loadData } from "../Classes/loadData.js";
+        import Flight from "../Classes/Flight.js";
+
+        let loaded = false;
+
+        document.getElementById("loadBtn").addEventListener("click", async () => {
+
+            if(!loaded){
+
+                await loadData();
+
+                loaded = true;
+
+                // show all flights
+                Flight.searchedFlightList = [...Flight.flightList];
+
+                Flight.displayFlights();
+
+                console.log(Flight.flightList);
+
+                alert("Flights loaded");
+
+            }
+        });
+
+        document.getElementById("timeBtn").addEventListener("click", () => {
+
+            Flight.sortFlight("time");
+
+            Flight.displayFlights();
+
+        });
+
+        document.getElementById("priceBtn").addEventListener("click", () => {
+
+            Flight.sortFlight("price");
+
+            Flight.displayFlights();
+
+        });
+
+    </script>
+
+</body>
+</html>

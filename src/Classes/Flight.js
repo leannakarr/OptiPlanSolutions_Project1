@@ -8,8 +8,8 @@ export default class Flight{
     static flightList = [];
     static searchedFlightList = [];
 
-    constructor(id,route, aircraft, date, time, price){
-        this.id = id;
+    constructor(route, aircraft, date, time, price){
+        this.id =`${route.id}_${date.replaceAll("-", "")}_${time.replace(":", "")}`;
         this.route = route;
         this.aircraft = aircraft;
         this.date = date;
