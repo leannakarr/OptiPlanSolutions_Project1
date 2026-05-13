@@ -11,4 +11,37 @@
         "city":"Melbourne",
         "country": "Australia"
     }
+    {
+        "code":"BNE",
+        "name":"Brisbane Airport",
+        "city":"Brisbane",
+        "country": "Australia"
+    }
+    {
+        "code":"OOL",
+        "name":"Gold Coast Airport",
+        "city":"Gold Coast",
+        "country": "Australia"
+    }
+    {
+        "code":"CNS",
+        "name":"Cairns Airport",
+        "city":"Cairns",
+        "country": "Australia"
+    }
+    {
+        "code":"ADL",
+        "name":"Adelaide Airport",
+        "city":"Adelaide",
+        "country": "Australia"
+    }
+    {
+
+    }
 ]
+
+
+('APT_HBA', 'HBA', 'Hobart Airport', 'Hobart', 'Australia'),
+('APT_PER', 'PER', 'Perth Airport', 'Perth', 'Australia'),
+('APT_TSV', 'TSV', 'Townsville Airport', 'Townsville', 'Australia'),
+('APT_MCY', 'MCY', 'Sunshine Coast Airport', 'Sunshine Coast', 'Australia')
