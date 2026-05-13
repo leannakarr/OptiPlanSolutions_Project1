@@ -36,12 +36,28 @@
         "country": "Australia"
     }
     {
-
+        "code":"HBA",
+        "name":"Hobart Airport",
+        "city":"Hobart",
+        "country": "Australia"
+    }
+    {
+        "code":"PER",
+        "name":"Perth Airport",
+        "city":"Perth",
+        "country": "Australia"
+    }
+    {
+        "code":"TSV",
+        "name":"Townsville Airport",
+        "city":"Townsville",
+        "country": "Australia"
+    }
+    {
+        "code":"MCY",
+        "name":"Sunshine Coast Airport",
+        "city":"Sunshine Coast",
+        "country": "Australia"
     }
 ]
 
-
-('APT_HBA', 'HBA', 'Hobart Airport', 'Hobart', 'Australia'),
-('APT_PER', 'PER', 'Perth Airport', 'Perth', 'Australia'),
-('APT_TSV', 'TSV', 'Townsville Airport', 'Townsville', 'Australia'),
-('APT_MCY', 'MCY', 'Sunshine Coast Airport', 'Sunshine Coast', 'Australia')
