@@ -1,0 +1,15 @@
+class Passenger{/* passanger class has all passenger information per passanger*/
+    constructor(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN){
+        this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.DOB = DOB;
+        this.gender = gender;
+        this.nationality = nationality;
+        this.email = email;
+        this.phone = phone;
+        this.postCode = postCode;
+        this.ABN = ABN;
+        this.PassengerId=`${this.email}${timestamp}`;
+    }
+}
