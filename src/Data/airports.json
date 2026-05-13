@@ -1,0 +1,14 @@
+[
+    {
+        "code":"SYD",
+        "name":"Sydney Airport",
+        "city":"Sydney",
+        "country": "Australia"
+    }
+    {
+        "code":"MEL",
+        "name":"Melbourne Airport",
+        "city":"Melbourne",
+        "country": "Australia"
+    }
+]
