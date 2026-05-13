@@ -7,11 +7,11 @@ import Flight from "./Flight.js";
 
 //get json filed
 export async function loadData() {
-    const airportData = await fetch("./data/airports.json").then(res => res.json());
-    const modelData = await fetch("./data/modelSpecs.json").then(res => res.json());
-    const aircraftData = await fetch("./data/aircraft.json").then(res => res.json());
-    const routeData = await fetch("./data/routes.json").then(res => res.json());
-    const flightData = await fetch("./data/flights.json").then(res => res.json());
+    const airportData = await fetch("../Data/airports.json").then(res => res.json());
+    const modelData = await fetch("../Data/modelSpecs.json").then(res => res.json());
+    const aircraftData = await fetch("../Data/aircraft.json").then(res => res.json());
+    const routeData = await fetch("../Data/routes.json").then(res => res.json());
+    const flightData = await fetch("../Data/flights.json").then(res => res.json());
 
     //create object arrays flights load into flight class
     const airports = {};
@@ -21,7 +21,7 @@ export async function loadData() {
 
     //for the airport json create an airport object useing class constructior add it to airports with value code
     for (let a of airportData) {
-        airports[a.airportCode] = new Airport(a.airportCode, a.airportName, a.city, a.country);
+        airports[a.code] = new Airport(a.code, a.name, a.city, a.country);
     }
 
     //for model json create a model object useing class constructor and have value as model id 
@@ -42,6 +42,6 @@ export async function loadData() {
 
     //from flight json get the information, add objects route and aircraft by adding thier object from lists the flight constructer adds it to Flight.flightList
     for (let f of flightData) {
-        new Flight(f.id, routes[f.route], aircrafts[f.aircraft], f.date, f.time, f.price);
+        new Flight(routes[f.route], aircrafts[f.aircraft], f.date, f.time, f.price);
     }
 }
