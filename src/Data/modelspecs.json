@@ -1,0 +1,22 @@
+[
+    { 
+        "modelId": "B38M", 
+        "totalSeats": 182, 
+        "takeOfWeight": 81374 
+    },
+    { 
+        "modelId": "B738", 
+        "totalSeats": 176, 
+        "takeOfWeight": 78240 
+    },
+    { 
+        "modelId": "B737", 
+        "totalSeats": 134, 
+        "takeOfWeight": 70080   
+    },
+    { 
+        "modelId": "E219", 
+        "totalSeats": 100, 
+        "takeOfWeight": 56400 
+    }
+]
