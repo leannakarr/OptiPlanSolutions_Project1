@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Test</title>
+</head>
+
+<body>
+  <h1>Create and Load Booking Test</h1>
+
+  <h2>1. Load flight data</h2>
+  <button id="loadDataBtn">Load Data</button>
+  <p id="loadStatus"></p>
+
+  <h2>2. Select flight</h2>
+  <select id="flightSelect">
+    <option value="">Load data first</option>
+  </select>
+
+  <h2>3. Create booking</h2>
+  <button id="createBookingBtn">Create Booking</button>
+
+  <h2>4. Load booking by ID</h2>
+  <input id="bookingIdInput" type="text" placeholder="Booking ID">
+  <button id="loadBookingBtn">Load Booking</button>
+
+  <hr>
+
+  <div id="result"></div>
+
+  <script type="module">
+    import { loadData } from "../Classes/loadData.js";
+    import Flight from "../Classes/Flight.js";
+    import Booking from "../Classes/Booking.js";
+    import Passenger from "../Classes/Passenger.js";
+    import Seat from "../Classes/Seat.js";
+    import Ticket from "../Classes/Tickets.js";
+
+    const loadDataBtn = document.getElementById("loadDataBtn");
+    const createBookingBtn = document.getElementById("createBookingBtn");
+    const loadBookingBtn = document.getElementById("loadBookingBtn");
+
+    const loadStatus = document.getElementById("loadStatus");
+    const flightSelect = document.getElementById("flightSelect");
+    const bookingIdInput = document.getElementById("bookingIdInput");
+    const result = document.getElementById("result");
+
+    loadDataBtn.addEventListener("click", async () => {
+      try {
+        await loadData();
+
+        flightSelect.innerHTML = "";
+
+        for (let i = 0; i < Flight.flightList.length; i++) {
+          const flight = Flight.flightList[i];
+
+          const option = document.createElement("option");
+          option.value = i;
+          option.textContent =
+            `${flight.id} | ${flight.date} | ${flight.time} | $${flight.price}`;
+
+          flightSelect.appendChild(option);
+        }
+
+        loadStatus.textContent = `Loaded ${Flight.flightList.length} flights.`;
+      } catch (error) {
+        console.error(error);
+        loadStatus.textContent = "Error loading data. Check console.";
+      }
+    });
+
+    createBookingBtn.addEventListener("click", () => {
+      const selectedIndex = flightSelect.value;
+
+      if (selectedIndex === "") {
+        result.innerHTML = "<p>Please load data and select a flight first.</p>";
+        return;
+      }
+
+      const selectedFlight = Flight.flightList[selectedIndex];
+
+      const passenger1 = new Passenger(
+        "Ms",
+        "Cami",
+        "Rose",
+        "2002-10-09",
+        "Female",
+        "Australian",
+        "cami@email.com",
+        "12345678",
+        "2500"
+      );
+
+      const passenger2 = new Passenger(
+        "Mr",
+        "Alphi",
+        "Bian",
+        "2001-05-03",
+        "Male",
+        "Australian",
+        "sam@email.com",
+        "0400000000",
+        "2500"
+      );
+
+      const seat1 = new Seat("12A", "Economy");
+      const seat2 = new Seat("12B", "Economy");
+
+      const ticket1 = new Ticket(
+        passenger1,
+        selectedFlight,
+        seat1,
+        "20",
+        ["meal"],
+        ["water"]
+      );
+
+      const ticket2 = new Ticket(
+        passenger2,
+        selectedFlight,
+        seat2,
+        "30",
+        [],
+        ["juice"]
+      );
+
+      const booking = new Booking(
+        selectedFlight,
+        null,
+        [ticket1, ticket2]
+      );
+
+      bookingIdInput.value = booking.bookingId;
+
+      displayBooking(booking);
+    });
+
+    loadBookingBtn.addEventListener("click", () => {
+      const bookingId = bookingIdInput.value;
+
+      const booking = Booking.findBooking(bookingId);
+
+      if (!booking) {
+        result.innerHTML = "<p>No booking found with that ID.</p>";
+        return;
+      }
+
+      displayBooking(booking);
+    });
+
+    function displayBooking(booking) {
+      let ticketHTML = "";
+
+      for (let ticket of booking.tickets) {
+        ticketHTML += `
+          <div style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+            <p><strong>Passenger:</strong> ${ticket.passenger.firstName} ${ticket.passenger.lastName}</p>
+            <p><strong>Email:</strong> ${ticket.passenger.email}</p>
+            <p><strong>Seat:</strong> ${ticket.seat.seatNumber}</p>
+            <p><strong>Seat Class:</strong> ${ticket.seat.seatClass}</p>
+            <p><strong>Seat Booked:</strong> ${ticket.seat.isBooked}</p>
+            <p><strong>Luggage:</strong> ${ticket.luggage}kg</p>
+            <p><strong>Ticket Cost:</strong> $${ticket.ticketCost()}</p>
+          </div>
+        `;
+      }
+
+      result.innerHTML = `
+        <h2>Booking Loaded</h2>
+
+        <p><strong>Booking ID:</strong> ${booking.bookingId}</p>
+        <p><strong>Status:</strong> ${booking.status}</p>
+
+        <h3>Flight</h3>
+        <p><strong>Flight ID:</strong> ${booking.flight.id}</p>
+        <p><strong>Date:</strong> ${booking.flight.date}</p>
+        <p><strong>Time:</strong> ${booking.flight.time}</p>
+        <p><strong>Price:</strong> $${booking.flight.price}</p>
+
+        <h3>Total</h3>
+        <p><strong>Total Booking Cost:</strong> $${booking.bookingCost()}</p>
+
+        <h3>Tickets</h3>
+        ${ticketHTML}
+      `;
+    }
+  </script>
+</body>
+</html>
