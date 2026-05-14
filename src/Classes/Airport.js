@@ -11,9 +11,9 @@ export default class Airport{
         this.country = country;
         this.id = "APT_" + this.airportCode;
         //destenations list used for search bar uses the departure airport list to recomend locations
-        this.destenations = []
+        this.destinations = []
     }
     addDestination(airport){
-        this.destenations.push(airport);
+        this.destinations .push(airport);
     }
 }

@@ -1,5 +1,5 @@
-class Passenger{/* passanger class has all passenger information per passanger*/
-    constructor(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN){
+export default class Passenger{/* passanger class has all passenger information per passanger*/
+    constructor(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN=null){
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -10,6 +10,6 @@ class Passenger{/* passanger class has all passenger information per passanger*/
         this.phone = phone;
         this.postCode = postCode;
         this.ABN = ABN;
-        this.PassengerId=`${this.email}${timestamp}`;
+        this.PassengerId=`${this.email}${Date.now()}`;
     }
 }

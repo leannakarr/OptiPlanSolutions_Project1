@@ -16,6 +16,7 @@ export default class Flight{
         this.time = time;
         this.price = price;
         this.bookedSeats = [];
+        this.bookingList = [];
         this.currentWeight = 0; 
         Flight.flightList.push(this);
     } 
@@ -56,26 +57,26 @@ export default class Flight{
     }
 
     //html flight information for when the flight is clicked on
-    createinformationCard1(){
+    createinformationCard1() {
         const card = document.createElement("div");
         card.className = "info-card";
-        card.innerHTML=`
-        <p>
-        <Strong>${this.id}</Strong></p>
-        ${this.route.expectedTime}
-        </p>
 
-        <p> 
-        <Strong>Stops</Strong>
-        1 stop (${this.route.arrivalAirport.airportCode})
-        </p> | one <p/></>
-        <p>
-        <Stong>Aircraft</Strong> 
-        ${this.aircraft.aircraftModel.modelString} 
-        <p/>
-        `;
-        return card;
-    }
+        card.innerHTML = `
+            <p><strong>${this.id}</strong></p>
+            <p>${this.route.expectedTime}</p>
+
+            <p><strong>Stops</strong><br>
+            1 stop (${this.route.arrivalAirport.airportCode})
+            </p>
+
+    <p>
+      <strong>Aircraft</strong><br>
+      ${this.aircraft.aircraftModel.modelString}
+    </p>
+  `;
+
+  return card;
+}
 
     //display method for flights that had been searched for 
     static displayFlights(){
@@ -87,5 +88,6 @@ export default class Flight{
             container.appendChild(f.createFlightCard());
         }
     } 
+    //create function to add the booking to the flight object
 }
 
