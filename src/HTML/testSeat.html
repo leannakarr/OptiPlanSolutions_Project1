@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Payment Test</title>
+</head>
+
+<body>
+  <h1>Simple Payment Test</h1>
+
+  <button id="payBtn">Make Payment</button>
+
+  <p id="result"></p>
+
+  <script type="module">
+    import Booking from "../Classes/Booking.js";
+    import Payment from "../Classes/Payment.js";
+
+    const fakeFlight = {
+      id: "SYD_MEL_TEST",
+      price: 120
+    };
+
+    const fakeTicket = {
+      ticketCost: function() {
+        return 120;
+      }
+    };
+
+    document.getElementById("payBtn").addEventListener("click", function() {
+      const booking = new Booking(fakeFlight, null, [fakeTicket]);
+
+      const payment = new Payment(
+        booking,
+        "Visa",
+        "123456789012"
+      );
+
+      payment.processPayment();
+
+      document.getElementById("result").innerHTML =
+        "Payment Status: " + payment.status + "<br>" +
+        "Booking Status: " + booking.status + "<br>" +
+        "Booking Cost: $" + booking.bookingCost();
+    });
+  </script>
+</body>
+</html>

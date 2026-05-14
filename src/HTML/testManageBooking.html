@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Test</title>
+</head>
+<body>
+  <h1>Booking Test</h1>
+
+  <button id="createBtn">Create Booking</button>
+
+  <p id="result"></p>
+
+  <script type="module">
+    import Booking from "../Classes/Booking.js";
+    import Passenger from "../Classes/Passenger.js";
+    import Seat from "../Classes/Seat.js";
+    import Ticket from "../Classes/Ticket.js";
+
+    const fakeFlight = {
+      id: "SYD_MEL_20260514_0900",
+      price: 120,
+      date: "2026-05-14",
+      time: "09:00"
+    };
+
+    document.getElementById("createBtn").addEventListener("click", () => {
+      const passenger1 = new Passenger("Ms","Cami","Rose", "2002-10-09", "Female", "Australian","cami@email.com", "12345678", "2500");
+
+      const passenger2 = new Passenger("Mr", "Alphi", "Bian", "2001-05-03","Male", "Australian", "sam@email.com", "0400000000", "2500");
+
+      const seat1 = new Seat("12A", "Economy");
+      const seat2 = new Seat("12B", "Economy");
+
+      const ticket1 = new Ticket(passenger1, fakeFlight, seat1, "20", ["meal"], ["water"]);
+
+      const ticket2 = new Ticket(passenger2, fakeFlight, seat2, "30", [],["juice"]);
+
+      const booking = new Booking(fakeFlight, null, [ticket1, ticket2]);
+
+      let ticketDisplay = "";
+
+      for (let ticket of booking.tickets) {
+        ticketDisplay += `
+          <hr>
+          <p><strong>Passenger:</strong> ${ticket.passenger.firstName} ${ticket.passenger.lastName}</p>
+          <p><strong>Email:</strong> ${ticket.passenger.email}</p>
+          <p><strong>Seat:</strong> ${ticket.seat.seatNumber}</p>
+          <p><strong>Seat Class:</strong> ${ticket.seat.seatClass}</p>
+          <p><strong>Seat Booked:</strong> ${ticket.seat.isBooked}</p>
+          <p><strong>Luggage:</strong> ${ticket.luggage}kg</p>
+          <p><strong>Ticket Cost:</strong> $${ticket.ticketCost()}</p>
+        `;
+      }
+
+      document.getElementById("result").innerHTML = `
+        <p><strong>Booking ID:</strong> ${booking.bookingId}</p>
+        <p><strong>Status:</strong> ${booking.status}</p>
+        <p><strong>Flight:</strong> ${booking.flight.id}</p>
+        <p><strong>Total Booking Cost:</strong> $${booking.bookingCost()}</p>
+
+        <h2>Tickets</h2>
+        ${ticketDisplay}
+      `;
+    });
+  </script>
+</body>
+</html>
