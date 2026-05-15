@@ -1,9 +1,250 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
   <title>Search flights page</title>
 </head>
-<body>
-    
 
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #222;
+    }
+
+    .page {
+      border: 3px solid #222;
+      min-height: 100vh;
+    }
+
+    header {
+      height: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      border-bottom: 1px solid #999;
+      background-color: #ffffff;
+    }
+
+    .logo {
+      width: 110px;
+      height: 45px;
+      border: 2px solid #aaa;
+      position: relative;
+    }
+
+    .logo::before,
+    .logo::after {
+      content: "";
+      position: absolute;
+      width: 125px;
+      height: 2px;
+      background: #aaa;
+      top: 21px;
+      left: -8px;
+    }
+
+    .logo::before {
+      transform: rotate(22deg);
+    }
+
+    .logo::after {
+      transform: rotate(-22deg);
+    }
+
+    nav {
+      display: flex;
+      gap: 60px;
+      color: #888;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .login {
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border: 2px solid #777;
+      border-radius: 50%;
+      margin: 3px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+    }
+
+    .sign-in {
+      border: 2px solid #aaa;
+      border-radius: 12px;
+      padding: 2px 12px;
+      font-weight: bold;
+      background: white;
+    }
+
+    .hero {
+      height: 220px;
+      border-bottom: 1px solid #aaa;
+      position: relative;
+      background: #fafafa;
+    }
+
+    .fake-text {
+      position: absolute;
+      left: 70px;
+      top: 85px;
+    }
+
+    .fake-text div {
+      height: 10px;
+      background: #e3e3e3;
+      border-radius: 10px;
+      margin: 12px;
+    }
+
+    .line1 { width: 260px; }
+    .line2 { width: 160px; }
+    .line3 { width: 210px; }
+
+    .fake-image {
+      position: absolute;
+      left: 345px;
+      top: 65px;
+      color: #e3e3e3;
+      font-size: 85px;
+    }
+
+    .booking-box {
+      width: 470px;
+      min-height: 135px;
+      border: 2px solid #777;
+      border-radius: 40px;
+      background: white;
+      position: absolute;
+      left: 50%;
+      bottom: -88px;
+      transform: translateX(-50%);
+      padding: 25px 32px;
+    }
+
+    .booking-box h1 {
+      margin: 0 0 15px;
+      font-size: 23px;
+      font-weight: normal;
+    }
+
+    .form-area {
+      display: grid;
+      grid-template-columns: 180px 180px 95px;
+      gap: 12px;
+      align-items: center;
+    }
+
+    input, button {
+      height: 38px;
+      border: 2px solid #000000;
+      border-radius: 9px;
+      background: #ffffff;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .date {
+      width: 100px;
+      height: 28px;
+      font-size: 11px;
+    }
+
+    .passengers {
+      width: 130px;
+    }
+
+    .search {
+      width: 95px;
+      height: 28px;
+      border-radius: 3px;
+      background: #00a6d6;
+    }
+
+    .radio-area {
+      font-size: 12px;
+      line-height: 28px;
+    }
+
+    .radio-area input {
+      height: auto;
+      width: auto;
+      accent-color: #00a6d6;
+    }
+
+    .bottom-space {
+      height: 160px;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <div class="logo"></div>
+
+      <nav>
+        <span>Search Flights</span>
+        <span>Manage Bookings</span>
+        <span>Check-In</span>
+        <span>Support</span>
+      </nav>
+
+      <div class="login">
+        <div>A Member?</div>
+        <div class="avatar">👤</div>
+        <button class="sign-in">Sign In</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="fake-text">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+
+      <div class="fake-image">◢ ●</div>
+
+      <div class="booking-box">
+        <h1 style="color: #00a6d6;">Book Your Next Flight</h1>
+
+        <div class="form-area">
+          <input type="text" placeholder="Departure Location">
+          <input type="text" placeholder="Arrival Location">
+
+          <div class="radio-area">
+            <label>
+              <input type="radio" name="trip"> One-Way
+            </label><br>
+            <label>
+              <input type="radio" name="trip" checked> Return
+            </label>
+          </div>
+
+          <div>
+            <input class="date" type="date" value="2026-05-05">
+            <input class="date" type="date" value="2026-05-05">
+          </div>
+
+          <button class="passengers">Passenger(s)</button>
+          <button class="search" style="color: #ffffff;">Search</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom-space"></div>
+
+  </div>
 </body>
+</html>
