@@ -180,6 +180,38 @@
     .passengers {
       width: 130px;
     }
+    .passenger-popup {
+      display: none;
+      position: absolute;
+      background: white;
+      border: 2px solid #777;
+      border-radius: 15px;
+      padding: 15px;
+      width: 170px;
+      right: 130px;
+      bottom: 20px;
+      box-shadow: 0 4px 10px #999;
+      z-index: 10;
+    }
+
+    .passenger-popup.show {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .passenger-popup label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .passenger-popup input {
+      width: 70px;
+      height: 25px;
+      margin-top: 4px;
+    }
+  
 
     .search {
       width: 95px;
@@ -262,7 +294,15 @@
             <input class="date" type="date" value="2026-05-05">
           </div>
 
-          <button class="passengers">Passenger(s)</button>
+          <button class="passengers" id="passengerBtn" type="button">Passengers</button>
+          <div class="passenger-popup" id="passengerPopup">
+            <label>Adults</label>
+            <input type="number" value="1" min="1">
+            <label>Children</label>
+            <input type="number" value="0" min="0">
+            <label>Infants</label>
+            <input type="number" value="0" min="0">
+          </div>
           <button class="search" style="color: #ffffff;">Search</button>
         </div>
       </div>
@@ -271,6 +311,6 @@
     <div class="bottom-space"></div>
 
   </div>
-  <script src = "searchMain.js"></script>
+  <script type="module" src="searchMain.js"></script>
 </body>
 </html>
