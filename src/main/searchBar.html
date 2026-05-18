@@ -2,9 +2,6 @@
 <html lang = "en">
 <head>
   <title>Search flights page</title>
-
-</head>
-
   <style>
     body {
       margin: 0;
@@ -28,29 +25,14 @@
     }
 
     .logo {
-      width: 110px;
-      height: 45px;
-      border: 2px solid #aaa;
-      position: relative;
+      width: 200px;
+      height: 80px;
     }
-
-    .logo::before,
-    .logo::after {
-      content: "";
-      position: absolute;
-      width: 125px;
-      height: 2px;
-      background: #aaa;
-      top: 21px;
-      left: -8px;
-    }
-
-    .logo::before {
-      transform: rotate(22deg);
-    }
-
-    .logo::after {
-      transform: rotate(-22deg);
+    
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     nav {
@@ -87,10 +69,12 @@
     }
 
     .hero {
-      height: 220px;
+      height: 250px;
       border-bottom: 1px solid #aaa;
       position: relative;
-      background: #fafafa;
+      background-image: url("Plane\ Background.png");
+      background-size: cover;
+      background-position: center;
     }
 
     .fake-text {
@@ -110,23 +94,16 @@
     .line2 { width: 160px; }
     .line3 { width: 210px; }
 
-    .fake-image {
-      position: absolute;
-      left: 345px;
-      top: 65px;
-      color: #e3e3e3;
-      font-size: 85px;
-    }
 
     .booking-box {
-      width: 470px;
+      width: 600px;
       min-height: 135px;
       border: 2px solid #777;
       border-radius: 40px;
       background: white;
       position: absolute;
       left: 50%;
-      bottom: -88px;
+      bottom: -150px;
       transform: translateX(-50%);
       padding: 25px 32px;
     }
@@ -182,7 +159,7 @@
     }
 
     .bottom-space {
-      height: 160px;
+      height: 220px;
       border-top: 1px solid #eee;
     }
   </style>
@@ -192,7 +169,9 @@
   <div class="page">
 
     <header>
-      <div class="logo"></div>
+      <div class="logo">
+        <img src="FlyDreamAir.png" alt="Logo">
+      </div>
 
       <nav>
         <span>Search Flights</span>
@@ -214,8 +193,6 @@
         <div class="line2"></div>
         <div class="line3"></div>
       </div>
-
-      <div class="fake-image">◢ ●</div>
 
       <div class="booking-box">
         <h1 style="color: #00a6d6;">Book Your Next Flight</h1>
