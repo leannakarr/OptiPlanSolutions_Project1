@@ -186,9 +186,9 @@
       background: white;
       border: 2px solid #777;
       border-radius: 15px;
-      padding: 15px;
-      width: 170px;
-      right: 130px;
+      padding: 10px;
+      width: 120px;
+      right: 100px;
       bottom: 20px;
       box-shadow: 0 4px 10px #999;
       z-index: 10;
@@ -290,20 +290,20 @@
           </div>
 
           <div>
-            <input class="date" type="date" value="2026-05-05">
-            <input class="date" type="date" value="2026-05-05">
+            <input class="date" id="departureDate" type="date" value="2026-05-05">
+            <input class="date" id="returnDate" type="date" value="2026-05-05">
           </div>
 
           <button class="passengers" id="passengerBtn" type="button">Passengers</button>
           <div class="passenger-popup" id="passengerPopup">
             <label>Adults</label>
-            <input type="number" value="1" min="1">
+            <input type="number" value="1" min="1" id="adults">
             <label>Children</label>
-            <input type="number" value="0" min="0">
+            <input type="number" value="0" min="0" id="children">
             <label>Infants</label>
-            <input type="number" value="0" min="0">
+            <input type="number" value="0" min="0" id="infants">
           </div>
-          <button class="search" style="color: #ffffff;">Search</button>
+          <button class="search" id = "search" style="color: #ffffff;">Search</button>
         </div>
       </div>
     </section>

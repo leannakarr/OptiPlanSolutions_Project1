@@ -4,6 +4,7 @@ export default class Airport{
     used in the search bar when offering recomendations when inputting the arival 
     location with refrence to the departure airports destenations list function add
     to destenations list used in route*/
+    static airportList=[]
     constructor(airportCode, airportName, city, country){
         this.airportCode = airportCode;
         this.airportName = airportName;
@@ -12,8 +13,12 @@ export default class Airport{
         this.id = "APT_" + this.airportCode;
         //destenations list used for search bar uses the departure airport list to recomend locations
         this.destinations = []
+        Airport.airportList.push(this)
     }
     addDestination(airport){
         this.destinations .push(airport);
+    }
+    checkDestination(airport) {
+        return this.destinations.includes(airport);
     }
 }
