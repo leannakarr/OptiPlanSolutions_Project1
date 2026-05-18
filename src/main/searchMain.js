@@ -28,7 +28,20 @@ if (passengerBtn && passengerPopup) {
 }
 
 //second date field disapears when select one way
+const tripRadios = document.querySelectorAll('input[name="trip"]');
 
+tripRadios.forEach(radio => {
+  radio.addEventListener("change", () => {
+    const bookingType = document.querySelector('input[name="trip"]:checked').value;
+
+    if (bookingType === "oneway") {
+      returnDate.style.display = "none";
+      returnDate.value = "";
+    } else {
+      returnDate.style.display = "inline-block";
+    }
+  });
+});
 
 // airport search 
 const departureInput = document.querySelector('input[placeholder="Departure Location"]');
@@ -104,20 +117,64 @@ arrivalInput.addEventListener("change", () => {
 });
 
 //get infomation when search button is clicked
-const bookingType = document.getElementById("bookingType");
 const departureDate = document.getElementById("departureDate");
+const returnDate = document.getElementById("returnDate");
+
 const noAdult = document.getElementById("adults");
 const noChildren = document.getElementById("children");
-const noInfints = document.getElementById("infants");
+const noInfants = document.getElementById("infants");
+
 const searchBtn = document.getElementById("search");
 
-searchBn.addEventListener("click", (event) => {
-  const bookingType =document.querySelector('input[name="trip"]:checked').value;
-  const bRoute = Route.getRoute(departureInput.value, arrivalInput.value);
-  const bAdults = noAdult.value;
-  const bChildren = noChildren.value;
-  const bInfints = noInfints.value;
-  if(bookingType.value === "return"){
+searchBtn.addEventListener("click", (event) => {
+  event.preventDefault();
 
+  const checkedTrip = document.querySelector('input[name="trip"]:checked');
+
+  if (!checkedTrip) {
+    alert("Please select one-way or return.");
+    return;
   }
-})
+
+  const bookingType = checkedTrip.value;
+
+  const departureAirport = Airport.airportList.find(
+    airport => airport.city === departureInput.value
+  );
+
+  const arrivalAirport = Airport.airportList.find(
+    airport => airport.city === arrivalInput.value
+  );
+
+  if (!departureAirport || !arrivalAirport) {
+    alert("Please choose valid departure and arrival cities.");
+    return;
+  }
+
+  const bRoute = Route.getRoute(departureAirport, arrivalAirport);
+
+  if (!bRoute) {
+    alert("No route found for these airports.");
+    return;
+  }
+
+  console.log("Booking type:", bookingType);
+  console.log("Route:", bRoute);
+  console.log("Departure date:", departureDate.value);
+  console.log("Return date:", returnDate.value);
+  console.log("Adults:", noAdult.value);
+  console.log("Children:", noChildren.value);
+  console.log("Infants:", noInfants.value);
+  
+  const searchData = {
+    bookingType: bookingType,
+    route: bRoute.id,
+    departureDate: departureDate.value,
+    returnDate: returnDate.value,
+    adults: noAdult.value,
+    children: noChildren.value,
+    infants: noInfants.value
+  };
+  sessionStorage.setItem("flightSearch", JSON.stringify(searchData));
+  window.location.href = "flightResults.html";
+});
