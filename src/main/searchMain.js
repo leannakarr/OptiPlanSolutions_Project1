@@ -168,7 +168,8 @@ searchBtn.addEventListener("click", (event) => {
   
   const searchData = {
     bookingType: bookingType,
-    route: bRoute.id,
+    departureAirport: departureAirport.city,
+    arrivalAirport: arrivalAirport.city,
     departureDate: departureDate.value,
     returnDate: returnDate.value,
     adults: noAdult.value,
