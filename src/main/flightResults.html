@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flight Results</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f4f4f4;
+    }
+
+    .results-box {
+      background: white;
+      border: 2px solid #777;
+      border-radius: 20px;
+      padding: 25px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #00a6d6;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="results-box">
+    <h1>Flight Search Details</h1>
+
+    <div id="results"></div>
+  </div>
+
+  <script>
+
+    // get transferred data
+    const searchData =
+      JSON.parse(sessionStorage.getItem("flightSearch"));
+
+    const resultsDiv =
+      document.getElementById("results");
+
+    // if no data found
+    if (!searchData) {
+
+      resultsDiv.innerHTML =
+        "<p>No search data found.</p>";
+
+    } else {
+
+      resultsDiv.innerHTML = `
+        <p><strong>Booking Type:</strong> ${searchData.bookingType}</p>
+
+        <p><strong>Route ID:</strong> ${searchData.routeId}</p>
+
+        <p><strong>Departure Date:</strong> ${searchData.departureDate}</p>
+
+        <p><strong>Return Date:</strong> ${searchData.returnDate}</p>
+
+        <p><strong>Adults:</strong> ${searchData.adults}</p>
+
+        <p><strong>Children:</strong> ${searchData.children}</p>
+
+        <p><strong>Infants:</strong> ${searchData.infants}</p>
+      `;
+    }
+
+  </script>
+
+</body>
+</html>
