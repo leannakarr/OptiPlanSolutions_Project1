@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://kit.fontawesome.com/a7f82b9220.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Search Results</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #222;
+      background-color: #fff;
+    }
+
+    .page {
+      border: 3px solid #222;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    header {
+      height: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 30px;
+      border-bottom: 1px solid #ddd;
+      background-color: #ffffff;
+    }
+
+    .logo {
+      width: 300px;
+      height: 95px;
+      display: flex;
+      align-items: center;
+      margin-left: -70px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      gap: 35px;
+      color: #000;
+      font-weight: bold;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
+
+    .login {
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+      min-width: 80px;
+      text-transform: uppercase;
+    }
+
+    .login i {
+      font-size: 34px;
+      color: #000;
+      margin: 5px 0;
+    }
+
+    .sign-in {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-weight: bold;
+      font-size: 20px;
+      color: #000;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    main {
+      padding: 25px 28px 35px 28px;
+    }
+
+    #searchSummaryBar {
+      height: 110px;
+      background: linear-gradient(to right, #008bb8, #48d2d0);
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 45px;
+      box-sizing: border-box;
+    }
+
+    .summary-left h1 {
+      margin: 0 0 14px 0;
+      font-size: 30px;
+    }
+
+    .summary-details {
+      display: flex;
+      gap: 28px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .summary-middle {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+    }
+
+    #sortSelect {
+      width: 250px;
+      height: 38px;
+      font-weight: bold;
+      font-size: 14px;
+      padding-left: 8px;
+      border: 2px solid #777;
+      background-color: white;
+    }
+
+    #modifySearchBtn {
+      background-color: #028ec5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 28px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 25px;
+      margin-top: 12px;
+    }
+
+    #filterPanel {
+      border: 2px solid #999;
+      border-radius: 4px;
+      padding: 22px 15px;
+      height: 375px;
+      box-sizing: border-box;
+    }
+
+    .filter-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .filter-title-row h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    #resetFiltersBtn {
+      border: none;
+      background: transparent;
+      color: #249bd2;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .filter-group {
+      margin-bottom: 25px;
+    }
+
+    .filter-group h3 {
+      margin: 0 0 10px 0;
+      font-size: 15px;
+    }
+
+    #priceRange {
+      width: 100%;
+      accent-color: #222;
+    }
+
+    .price-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 8px 0;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .results-area {
+      min-width: 0;
+    }
+
+    #resultsHeading {
+      font-size: 17px;
+      margin: 32px 0 18px 0;
+      font-weight: bold;
+    }
+
+    #flightResultsContainer {
+      height: 535px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+
+    .flight-card {
+      border: 2px solid #777;
+      margin-bottom: 18px;
+      background-color: white;
+    }
+
+    .flight-main {
+      min-height: 108px;
+      display: grid;
+      grid-template-columns: 180px 120px 1fr 120px 120px 150px;
+      align-items: center;
+      padding: 0 25px;
+      box-sizing: border-box;
+      column-gap: 18px;
+    }
+
+    .airline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #229bd6;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .airline i {
+      font-size: 34px;
+    }
+
+    .flight-code {
+      color: #000;
+      font-size: 13px;
+      margin-left: 45px;
+      font-weight: bold;
+    }
+
+    .stop-label {
+      color: #000;
+      font-size: 13px;
+      margin-left: 45px;
+      font-weight: bold;
+    }
+
+    .time-block .time {
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .time-block .airport {
+      font-size: 22px;
+    }
+
+    .duration-line {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .plane-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      margin: 8px 0;
+    }
+
+    .line {
+      height: 2px;
+      background-color: #bbb;
+      flex: 1;
+    }
+
+    .plane-line i {
+      font-size: 25px;
+      margin-left: -4px;
+    }
+
+    .price-block {
+      text-align: left;
+    }
+
+    .from {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 34px;
+      font-weight: bold;
+    }
+
+    .select-area {
+      text-align: center;
+    }
+
+    .select-btn {
+      width: 135px;
+      height: 36px;
+      background-color: #279bd6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .details-toggle {
+      margin-top: 8px;
+      color: #279bd6;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .flight-details {
+      border-top: 2px solid #777;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr 1fr;
+    }
+
+    .details-section {
+      min-height: 145px;
+      padding: 10px 25px;
+      box-sizing: border-box;
+      border-right: 2px solid #bbb;
+    }
+
+    .details-section:last-child {
+      border-right: none;
+    }
+
+    .details-section h2 {
+      text-align: center;
+      color: #229bd6;
+      font-size: 27px;
+      margin: 0 0 20px 0;
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    .detail-row strong {
+      font-weight: bold;
+    }
+
+    .info-icon {
+      border: 1px solid #aaa;
+      border-radius: 50%;
+      padding: 1px 6px;
+      font-size: 13px;
+      margin-left: 8px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header>
+      <div class="logo" id="logoBox">
+        <img id="logoImage" src="FlyDreamAir.png" alt="FlyDreamAir Logo">
+      </div>
+
+      <nav id="mainNav">
+        <span id="navSearchFlights">Search Flights</span>
+        <span id="navManageBookings">Manage Bookings</span>
+        <span id="navCheckIn">Check-In</span>
+        <span id="navSupport">Support</span>
+      </nav>
+
+      <div class="login" id="loginBox">
+        <div >A Member?</div>
+        <i id="loginIcon" class="fa-solid fa-circle-user"></i>
+        <button id="signInBtn" class="sign-in">Login</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="searchSummaryBar">
+        <div class="summary-left">
+          <h1 id="routeTitle"></h1>
+          <div class="summary-details">
+            <span id="tripTypeText">One-Way</span>
+            <span id="departureDateText">23 May 2026</span>
+            <span id="passengerText">1 Adult</span>
+            <span id="fareClassText">Economy</span>
+          </div>
+        </div>
+
+        <div class="summary-middle">
+          <select id="sortSelect">
+            <option id="sortDepartureEarliest" value="departure-earliest">Departure Time (Earliest)</option>
+            <option id="sortDepartureLatest" value="departure-latest">Departure Time (Latest)</option>
+            <option id="sortPriceLowest" value="price-lowest">Price (Lowest)</option>
+            <option id="sortPriceHighest" value="price-highest">Price (Highest)</option>
+          </select>
+
+          <button id="modifySearchBtn">Modify Search</button>
+        </div>
+      </section>
+
+      <section class="content">
+        <aside id="filterPanel">
+          <div class="filter-title-row">
+            <h2 id="filterTitle">Search Filters</h2>
+            <button id="resetFiltersBtn">Reset</button>
+          </div>
+
+          <div class="filter-group">
+            <h3 id="priceRangeTitle">Price Range</h3>
+            <input id="priceRange" type="range" min="80" max="600" value="200">
+            <div class="price-labels">
+              <span id="minPriceLabel">$80</span>
+              <span id="maxPriceLabel">$600+</span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3 id="departureTimeTitle">Departure Time</h3>
+
+            <label class="checkbox-row">
+              <input id="morningCheckbox" type="checkbox">
+              Morning
+            </label>
+
+            <label class="checkbox-row">
+              <input id="afternoonCheckbox" type="checkbox">
+              Afternoon
+            </label>
+
+            <label class="checkbox-row">
+              <input id="eveningCheckbox" type="checkbox">
+              Evening
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <h3 id="stopsTitle">Stops</h3>
+
+            <label class="checkbox-row">
+              <input id="noStopsCheckbox" type="checkbox" checked>
+              No Stops
+            </label>
+
+            <label class="checkbox-row">
+              <input id="oneStopCheckbox" type="checkbox">
+              1 Stop
+            </label>
+
+            <label class="checkbox-row">
+              <input id="multipleStopsCheckbox" type="checkbox">
+              Multiple Stops
+            </label>
+          </div>
+        </aside>
+
+        <section class="results-area">
+          <h2 id="resultsHeading">10 Flights Found</h2>
+
+          <div id="flightResultsContainer">
+            <!-- Add your loaded flight result boxes inside this div using JavaScript -->
+
+            <div class="flight-card" id="flightCardExample1">
+              <div class="flight-main">
+                <div>
+                  <div class="airline">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>FlyDreamAir</span>
+                  </div>
+                  <div class="flight-code">FDA 101</div>
+                  <div class="stop-label">Non-Stop</div>
+                </div>
+
+                <div class="time-block">
+                  <div class="time">08:00</div>
+                  <div class="airport">SYD</div>
+                </div>
+
+                <div class="duration-line">
+                  <div>1hr 30m</div>
+                  <div class="plane-line">
+                    <div class="line"></div>
+                    <i class="fa-solid fa-plane"></i>
+                  </div>
+                  <div>Non-Stop</div>
+                </div>
+
+                <div class="time-block">
+                  <div class="time">09:30</div>
+                  <div class="airport">MEL</div>
+                </div>
+
+                <div class="price-block">
+                  <div class="from">From</div>
+                  <div class="price">$129</div>
+                </div>
+
+                <div class="select-area">
+                  <button class="select-btn" id="selectFlightExample1">Select</button>
+                  <div class="details-toggle" id="viewDetailsExample1">View Details ˅</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flight-card" id="flightCardExample2">
+              <div class="flight-main">
+                <div>
+                  <div class="airline">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>FlyDreamAir</span>
+                  </div>
+                  <div class="flight-code">FDA 102</div>
+                  <div class="stop-label">Non-Stop</div>
+                </div>
+
+                <div class="time-block">
+                  <div class="time">09:15</div>
+                  <div class="airport">SYD</div>
+                </div>
+
+                <div class="duration-line">
+                  <div>1hr 35m</div>
+                  <div class="plane-line">
+                    <div class="line"></div>
+                    <i class="fa-solid fa-plane"></i>
+                  </div>
+                  <div>Non-Stop</div>
+                </div>
+
+                <div class="time-block">
+                  <div class="time">10:50</div>
+                  <div class="airport">MEL</div>
+                </div>
+
+                <div class="price-block">
+                  <div class="from">From</div>
+                  <div class="price">$145</div>
+                </div>
+
+                <div class="select-area">
+                  <button class="select-btn" id="selectFlightExample2">Select</button>
+                  <div class="details-toggle" id="viewDetailsExample2">View Details ˅</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flight-card" id="flightCardExample3">
+              <div class="flight-main">
+                <div>
+                  <div class="airline">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>FlyDreamAir</span>
+                  </div>
+                  <div class="flight-code">FDA 101</div>
+                  <div class="stop-label">Non-Stop</div>
+                </div>
+
+                <div class="time-block">
+                  <div class="time">10:30</div>
+                  <div class="airport">SYD</div>
+                </div>
+
+                <div class="duration-line">
+                  <div>1hr 40m</div>
+                  <div class="plane-line">
+                    <div class="line"></div>
+                    <i class="fa-solid fa-plane"></i>
+                  </div>
+                  <div>Non-Stop</div>
+                </div>
+
+                <div class="time-block">
+                  <div class="time">12:10</div>
+                  <div class="airport">MEL</div>
+                </div>
+
+                <div class="price-block">
+                  <div class="from">From</div>
+                  <div class="price">$99</div>
+                </div>
+
+                <div class="select-area">
+                  <button class="select-btn" id="selectFlightExample3">Select</button>
+                  <div class="details-toggle" id="hideDetailsExample3">Hide Details ^</div>
+                </div>
+              </div>
+
+              <div class="flight-details" id="flightDetailsExample3">
+                <div class="details-section">
+                  <h2>Flight Details</h2>
+
+                  <div class="detail-row">
+                    <strong>FDA 101</strong>
+                    <span>1h 40m</span>
+                  </div>
+
+                  <div class="detail-row">
+                    <strong>Stops</strong>
+                    <span>1 Stop (MEL)</span>
+                  </div>
+
+                  <div class="detail-row">
+                    <strong>Aircraft</strong>
+                    <span>Boeing 737-800</span>
+                  </div>
+                </div>
+
+                <div class="details-section">
+                  <h2>In-Flight Services</h2>
+
+                  <div class="detail-row">
+                    <strong>Snacks, Drinks</strong>
+                    <span>Available</span>
+                  </div>
+
+                  <div class="detail-row">
+                    <strong>Seat Selection</strong>
+                    <span>Available</span>
+                  </div>
+
+                  <div class="detail-row">
+                    <strong>Extra Baggage</strong>
+                    <span>Available</span>
+                  </div>
+                </div>
+
+                <div class="details-section">
+                  <h2>Fare Type</h2>
+
+                  <div class="detail-row">
+                    <strong>Economy</strong>
+                    <span></span>
+                  </div>
+
+                  <div class="detail-row">
+                    <strong>Check Baggage</strong>
+                    <span>20kg</span>
+                  </div>
+
+                  <div class="detail-row">
+                    <strong>Changable/Refundable</strong>
+                    <span><span class="info-icon">i</span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+</body>
+<script type="module" src="flightResults.js"></script>
+</html>

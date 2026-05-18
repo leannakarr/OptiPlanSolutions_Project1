@@ -4,25 +4,124 @@
     <title>Flight Sorting Test</title>
 
     <style>
-        body{
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background: #f4f4f4;
-        }
+        .flight-card {
+    width: 850px;
+    height: 85px;
+    border: 1px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background-color: white;
+}
 
-        button{
-            padding: 10px;
-            margin-right: 10px;
-            margin-bottom: 20px;
-        }
+.airline-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 145px;
+}
 
-        .flight-card{
-            background: white;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-        }
+.logo {
+    font-size: 28px;
+    color: #1c9edb;
+}
+
+.airline-section h3 {
+    margin: 0;
+    color: #269ad6;
+    font-size: 16px;
+}
+
+.airline-section p {
+    margin: 1px 0;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.time-section {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1;
+}
+
+.time-block h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.time-block p {
+    margin: 2px 0 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.line-section {
+    width: 200px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.line-section p {
+    margin: 2px 0;
+}
+
+.flight-line {
+    display: flex;
+    align-items: center;
+}
+
+.flight-line span:first-child {
+    height: 2px;
+    background-color: #bbb;
+    flex: 1;
+}
+
+.plane {
+    color: #aaa;
+    font-size: 22px;
+    margin-left: -6px;
+}
+
+.price-section {
+    width: 80px;
+}
+
+.price-section p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.price-section h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.button-section {
+    width: 100px;
+    text-align: center;
+}
+
+.button-section button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button-section p {
+    margin: 5px 0 0;
+    color: #3498db;
+    font-size: 11px;
+}
     </style>
 </head>
 

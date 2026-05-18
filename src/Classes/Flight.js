@@ -28,6 +28,17 @@ export default class Flight{
                 Flight.searchedFlightList.push(f);
             }
         }
+        return this.searchedFlightList;
+    }
+
+    static displayFlights() {
+        const container = document.getElementById("flightResultsContainer");
+        const heading = document.getElementById("resultsHeading");
+        container.innerHTML = "";
+        heading.textContent = `${Flight.searchedFlightList.length} Flights Found`;
+        for (let f of Flight.searchedFlightList) {
+            container.appendChild(f.createFlightCard());
+        }
     }
 
     //sort flight method will take the option of sought by and arainge the flights 
@@ -42,19 +53,54 @@ export default class Flight{
 
 
     //html flight info display for the search options
-    createFlightCard(){
-        const card = document.createElement("div");
-        card.className = "flight-card";
-        card.innerHTML = `
-            <h3>${this.route.departureAirport.airportCode}
-                → ${this.route.arrivalAirport.airportCode}</h3>
+createFlightCard() {
+    const card = document.createElement("div");
+    card.className = "flight-card";
 
-            <p>Date: ${this.date}</p>
-            <p>Time: ${this.time}</p>
-            <p>Price: $${this.price}</p>
-        `;
-    return card
-    }
+    card.innerHTML = `
+        <div class="airline-section">
+            <div class="logo">✈</div>
+            <div>
+                <h3>FlyDreamAir</h3>
+                <p>FDA 101</p>
+                <p>Non-Stop</p>
+            </div>
+        </div>
+
+        <div class="time-section">
+            <div class="time-block">
+                <h2>${this.time}</h2>
+                <p>${this.route.departureAirport.airportCode}</p>
+            </div>
+
+            <div class="line-section">
+                <p>1hr 30m</p>
+                <div class="flight-line">
+                    <span></span>
+                    <span class="plane">✈</span>
+                </div>
+                <p>Non-Stop</p>
+            </div>
+
+            <div class="time-block">
+                <h2>09:30</h2>
+                <p>${this.route.arrivalAirport.airportCode}</p>
+            </div>
+        </div>
+
+        <div class="price-section">
+            <p>From</p>
+            <h2>$${this.price}</h2>
+        </div>
+
+        <div class="button-section">
+            <button>Select</button>
+            <p>View Details⌄</p>
+        </div>
+    `;
+
+    return card;
+}
 
     //html flight information for when the flight is clicked on
     createinformationCard1() {

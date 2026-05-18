@@ -15,4 +15,11 @@ export default class Route{
     return Route.routes.find(route =>
         route.departureAirport === departureAirport && route.arrivalAirport === arrivalAirport) || null;
     }
+    static getRouteById(id){
+        return Route.routes.find(route=> route.id === id);
+    }
+    toString(){
+        const routeString = `${this.departureAirport.city}  (${this.departureAirport.id}) → ${this.arrivalAirport.city} (${this.arrivalAirport.id})`;
+        return routeString
+    }
 }
