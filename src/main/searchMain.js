@@ -152,6 +152,7 @@ searchBtn.addEventListener("click", (event) => {
   }
 
   const bRoute = Route.getRoute(departureAirport, arrivalAirport);
+  const routeId = bRoute.id;
 
   if (!bRoute) {
     alert("No route found for these airports.");
@@ -170,6 +171,7 @@ searchBtn.addEventListener("click", (event) => {
     bookingType: bookingType,
     departureAirport: departureAirport.city,
     arrivalAirport: arrivalAirport.city,
+    routeid: routeId,
     departureDate: departureDate.value,
     returnDate: returnDate.value,
     adults: noAdult.value,
