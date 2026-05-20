@@ -121,6 +121,45 @@
     margin: 5px 0 0;
     color: #3498db;
     font-size: 11px;
+    cursor: pointer;
+}
+.flight-wrapper {
+    margin-bottom: 15px;
+}
+
+.info-card {
+    width: 850px;
+    display: flex;
+    border: 1px solid #444;
+    border-top: none;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.info-column {
+    width: 33.33%;
+    padding: 10px 20px 18px 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #aaa;
+}
+
+.info-column:last-child {
+    border-right: none;
+}
+
+.info-column h2 {
+    margin: 0 0 18px 0;
+    text-align: center;
+    color: #269ad6;
+    font-size: 24px;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 8px;
+    font-size: 15px;
 }
     </style>
 </head>
@@ -135,7 +174,9 @@
 
     <button id="priceBtn">Sort by Price</button>
 
-    <div id="flightResults"></div>
+    <h2 id="resultsHeading"></h2>
+
+    <div id="flightResultsContainer"></div>
 
     <script type="module">
 

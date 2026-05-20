@@ -46,14 +46,20 @@ export default class Flight{
     static sortFlight(sortBy = "time"){
         if(sortBy==="time"){
             Flight.searchedFlightList.sort((a,b)=> a.time.localeCompare(b.time));}
+        else if (sortBy === "time-reverse") {
+            Flight.searchedFlightList.sort((a, b) => b.time.localeCompare(a.time));}   
         else if(sortBy === "price"){
-            Flight.searchedFlightList.sort((a,b)=> a.price - b.price);
+            Flight.searchedFlightList.sort((a,b)=> a.price - b.price);}
+        else if (sortBy === "price-reverse") {
+            Flight.searchedFlightList.sort((a, b) => b.price - a.price);}
         }
-    }
 
 
     //html flight info display for the search options
 createFlightCard() {
+    const wrapper = document.createElement("div");
+    wrapper.className = "flight-wrapper";
+
     const card = document.createElement("div");
     card.className = "flight-card";
 
@@ -95,45 +101,112 @@ createFlightCard() {
 
         <div class="button-section">
             <button>Select</button>
-            <p>View Details⌄</p>
+            <p class="view-details">View Details⌄</p>
+        </div>
+    `;
+
+    const infoCard = this.createinformationCard1();
+    infoCard.style.display = "none";
+
+    const viewDetails = card.querySelector(".view-details");
+
+    viewDetails.addEventListener("click", () => {
+        if (infoCard.style.display === "none") {
+            infoCard.style.display = "flex";
+            viewDetails.textContent = "Hide Details⌃";
+        } else {
+            infoCard.style.display = "none";
+            viewDetails.textContent = "View Details⌄";
+        }
+    });
+
+    wrapper.appendChild(card);
+    wrapper.appendChild(infoCard);
+
+    return wrapper;
+}
+
+    //html flight information for when the flight is clicked on
+    createinformationCard1() {
+    const card = document.createElement("div");
+    card.className = "info-card";
+
+    card.innerHTML = `
+        <div class="info-column">
+            <h2>Flight Details</h2>
+
+            <div class="info-row">
+                <strong>FDA 101</strong>
+                <span>1h 40m</span>
+            </div>
+
+            <div class="info-row">
+                <strong>Stops</strong>
+                <span>1 Stop (${this.route.arrivalAirport.airportCode})</span>
+            </div>
+
+            <div class="info-row">
+                <strong>Aircraft</strong>
+                <span>${this.aircraft.aircraftModel.modelString}</span>
+            </div>
+        </div>
+
+        <div class="info-column">
+            <h2>In-Flight Services</h2>
+
+            <div class="info-row">
+                <strong>Snacks, Drinks</strong>
+                <span>Available</span>
+            </div>
+
+            <div class="info-row">
+                <strong>Seat Selection</strong>
+                <span>Available</span>
+            </div>
+
+            <div class="info-row">
+                <strong>Extra Baggage</strong>
+                <span>Available</span>
+            </div>
+        </div>
+
+        <div class="info-column">
+            <h2>Fare Type</h2>
+
+            <div class="info-row">
+                <strong>Economy</strong>
+                <span></span>
+            </div>
+
+            <div class="info-row">
+                <strong>Check Baggage</strong>
+                <span>20kg</span>
+            </div>
+
+            <div class="info-row">
+                <strong>Changable/Refundable</strong>
+                <span>ⓘ</span>
+            </div>
         </div>
     `;
 
     return card;
 }
 
-    //html flight information for when the flight is clicked on
-    createinformationCard1() {
-        const card = document.createElement("div");
-        card.className = "info-card";
 
-        card.innerHTML = `
-            <p><strong>${this.id}</strong></p>
-            <p>${this.route.expectedTime}</p>
-
-            <p><strong>Stops</strong><br>
-            1 stop (${this.route.arrivalAirport.airportCode})
-            </p>
-
-    <p>
-      <strong>Aircraft</strong><br>
-      ${this.aircraft.aircraftModel.modelString}
-    </p>
-  `;
-
-  return card;
-}
 
     //display method for flights that had been searched for 
-    static displayFlights(){
-        const container = 
-        document.getElementById("flightResults");
+   static displayFlights() {
+    const container = document.getElementById("flightResultsContainer");
+    const heading = document.getElementById("resultsHeading");
 
-        container.innerHTML = "";
-        for(let f of Flight.searchedFlightList){
-            container.appendChild(f.createFlightCard());
-        }
-    } 
+    container.innerHTML = "";
+    heading.textContent = `${Flight.searchedFlightList.length} Flights Found`;
+
+    for (let f of Flight.searchedFlightList) {
+        container.appendChild(f.createFlightCard());
+    }
+}
     //create function to add the booking to the flight object
 }
 
