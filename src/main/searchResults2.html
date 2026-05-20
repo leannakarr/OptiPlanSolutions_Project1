@@ -132,7 +132,85 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .content {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 25px;
+      margin-top: 20px;
+    }
 
+    #filterPanel {
+      border: 2px solid #999;
+      border-radius: 4px;
+      padding: 22px 15px;
+      box-sizing: border-box;
+    }
+
+    .filter-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .filter-title-row h2 {
+      margin: 0;
+      font-size: 16px;
+    }
+    #resetFiltersBtn {
+      border: none;
+      background: transparent;
+      color: #028ec5;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .filter-group {
+      margin-bottom: 25px;
+    }
+
+    .filter-group h3 {
+      margin: 0 0 10px 0;
+      font-size: 15px;
+    }
+
+    #priceRange {
+      width: 100%;
+      accent-color: #222;
+    }
+
+    .price-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 8px 0;
+      font-size: 11px;
+      font-weight: bold;
+      accent-color: #028ec5;
+    }
+    .results-area {
+      min-width: 0;
+    }
+
+    #resultsHeading {
+      font-size: 12px;
+      margin: 32px 0 18px 0;
+      font-weight: bold;
+    }
+
+    #flightResultsContainer {
+      height: 535px;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
   </style>
   </head>
   <body>
@@ -179,6 +257,66 @@
           <button id="modifySearchBtn">Modify Search</button>
         </div>
       </section>
+
+
+      <section class="content">
+        <aside id="filterPanel">
+          <div class="filter-title-row">
+            <h2 id="filterTitle">Search Filters</h2>
+            <button id="resetFiltersBtn">Reset</button>
+          </div>
+
+          <div class="filter-group">
+            <h3 id="priceRangeTitle">Price Range</h3>
+            <input id="priceRange" type="range" min="50" max="600" value="600">
+            <div class="price-labels">
+              <span id="minPriceLabel">$50</span>
+              <span id="maxPriceLabel">$600+</span>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <h3 id="departureTimeTitle">Departure Time</h3>
+
+            <label class="checkbox-row">
+              <input id="morningCheckbox" type="checkbox" checked = "true">
+              Morning
+            </label>
+
+            <label class="checkbox-row">
+              <input id="afternoonCheckbox" type="checkbox" checked = "true">
+              Afternoon
+            </label>
+
+            <label class="checkbox-row">
+              <input id="eveningCheckbox" type="checkbox" checked = "true">
+              Evening
+            </label>
+          </div>
+
+          <div class="filter-group">
+            <h3 id="stopsTitle">Stops</h3>
+
+            <label class="checkbox-row">
+              <input id="noStopsCheckbox" type="checkbox" checked = "true">
+              No Stops
+            </label>
+
+            <label class="checkbox-row">
+              <input id="oneStopCheckbox" type="checkbox" checked = "true">
+              1 Stop
+            </label>
+
+            <label class="checkbox-row">
+              <input id="multipleStopsCheckbox" type="checkbox" checked = "true">
+              Multiple Stops
+            </label>
+          </div>
+        </aside>
+        <section class="results-area">
+            <h2 id="resultsHeading">x Flights Found</h2>
+            <div id="flightResultsContainer"></div>
+        </section>
       </main>
     </div>
     </body>
