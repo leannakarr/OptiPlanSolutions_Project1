@@ -179,5 +179,5 @@ searchBtn.addEventListener("click", (event) => {
     infants: noInfants.value
   };
   sessionStorage.setItem("flightSearch", JSON.stringify(searchData));
-  window.location.href = "flightResults.html";
+  window.location.href = "searchResults2.html";
 });

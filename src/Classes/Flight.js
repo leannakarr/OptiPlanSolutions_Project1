@@ -24,21 +24,11 @@ export default class Flight{
     static getSearchedFlight(route, date){
         Flight.searchedFlightList = [];
         for(let f of Flight.flightList){
-            if(f.route === route && f.date === date){
+            if(f.route.id === route && f.date === date){
                 Flight.searchedFlightList.push(f);
             }
         }
-        return this.searchedFlightList;
-    }
-
-    static displayFlights() {
-        const container = document.getElementById("flightResultsContainer");
-        const heading = document.getElementById("resultsHeading");
-        container.innerHTML = "";
-        heading.textContent = `${Flight.searchedFlightList.length} Flights Found`;
-        for (let f of Flight.searchedFlightList) {
-            container.appendChild(f.createFlightCard());
-        }
+        return Flight.searchedFlightList;
     }
 
     //sort flight method will take the option of sought by and arainge the flights 
