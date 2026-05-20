@@ -1,8 +1,9 @@
 import Flight from "../Classes/Flight.js";
 import { loadData } from "../Classes/loadData.js";
 
-let loaded = false;
 
+let loaded = false;
+//load flight information
 window.addEventListener("DOMContentLoaded", async () => {
     if (!loaded) {
         await loadData();
@@ -22,11 +23,31 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     console.log("Search data:", searchData);
     console.log("Matching flights:", Flight.searchedFlightList);
+
+    //put summary flight information in bar
+    const routeTitle = document.getElementById("routeTitle");
+    const type = document.getElementById("tripTypeText");
+    const departureDate = document.getElementById("departureDateText");
+    const passangers = document.getElementById("passengerText");
+    routeTitle.textContent = searchData.routeid;
+    type.textContent = searchData.bookingType;
+    departureDate.textContent = searchData.departureDate.split("-").reverse().join("-");;
+    let passangerList = searchData.adults + " Adult";
+    if(searchData.adults!="1"){
+        passangerList +="s"
+    }
+    if(searchData.children!="0"){
+        passangerList += "\n" + searchData.children + " Children\n";
+    }
+    if(searchData.infants!="0"){
+        passangerList += "\n" + searchData.infants +" Infants";
+    }
+    passangers.textContent = passangerList;
     }
 });
 
-//get list of flights that fit the conditions
-//const flightResultList = flight.
+
+
 
 
 const signInBtn = document.querySelector(".sign-in");
@@ -53,6 +74,7 @@ if (sortSelect) {
 const modifySearchBtn = document.getElementById("modifySearchBtn");
 if (modifySearchBtn) {
     modifySearchBtn.addEventListener("click", () => {
+        sessionStorage.setItem("modifySearch", "true");
         window.location.href = "searchBar.html";
     });
 }
@@ -77,5 +99,3 @@ if(resetFilters){
         });
     }
 
-//get list of flights that fit the conditions
-//const flightResultList = flight.
