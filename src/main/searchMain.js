@@ -181,3 +181,17 @@ searchBtn.addEventListener("click", (event) => {
   sessionStorage.setItem("flightSearch", JSON.stringify(searchData));
   window.location.href = "searchResults2.html";
 });
+
+const oldSearchData = JSON.parse(sessionStorage.getItem("flightSearch"));
+const modifySearch = sessionStorage.getItem("modifySearch");
+
+if (modifySearch === "true" && oldSearchData) {
+    // put old values back into the search form
+    departureDate.value = oldSearchData.departureDate;
+    returnDate.value = oldSearchData.returnDate;
+    noAdult.value = oldSearchData.adults;
+    noChildren.value = oldSearchData.children;
+    noInfants.value = oldSearchData.infants;
+
+    sessionStorage.removeItem("modifySearch");
+}
