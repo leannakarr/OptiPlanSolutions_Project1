@@ -211,6 +211,164 @@
       overflow-y: auto;
       padding-right: 5px;
     }
+    .flight-card {
+    width: 840px;
+    height: 85px;
+    border: 1px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    padding: 0 22px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background-color: white;
+    }
+    
+.airline-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 145px;
+}
+
+.logo {
+    font-size: 28px;
+    color: #1c9edb;
+}
+
+.airline-section h3 {
+    margin: 0;
+    color: #269ad6;
+    font-size: 16px;
+}
+
+.airline-section p {
+    margin: 1px 0;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.time-section {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1;
+}
+
+.time-block h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.time-block p {
+    margin: 2px 0 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.line-section {
+    width: 200px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.line-section p {
+    margin: 2px 0;
+}
+
+.flight-line {
+    display: flex;
+    align-items: center;
+}
+
+.flight-line span:first-child {
+    height: 2px;
+    background-color: #bbb;
+    flex: 1;
+}
+
+.plane {
+    color: #aaa;
+    font-size: 22px;
+    margin-left: -6px;
+}
+
+.price-section {
+    width: 80px;
+}
+
+.price-section p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.price-section h2 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.button-section {
+    width: 100px;
+    text-align: center;
+}
+
+.button-section button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.button-section p {
+    margin: 5px 0 0;
+    color: #3498db;
+    font-size: 11px;
+    cursor: pointer;
+}
+.flight-wrapper {
+    margin-bottom: 15px;
+}
+
+.info-card {
+    width: 850px;
+    display: flex;
+    border: 1px solid #444;
+    border-top: none;
+    background-color: white;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.info-column {
+    width: 33.33%;
+    padding: 10px 20px 18px 20px;
+    box-sizing: border-box;
+    border-right: 1px solid #aaa;
+}
+
+.info-column:last-child {
+    border-right: none;
+}
+
+.info-column h2 {
+    margin: 0 0 18px 0;
+    text-align: center;
+    color: #269ad6;
+    font-size: 24px;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 8px;
+    font-size: 15px;
+}
   </style>
   </head>
   <body>
@@ -248,10 +406,10 @@
         </div>
         <div class="summary-middle">
           <select id="sortSelect">
-            <option id="sortDepartureEarliest" value="departure-earliest">Departure Time (Earliest)</option>
-            <option id="sortDepartureLatest" value="departure-latest">Departure Time (Latest)</option>
-            <option id="sortPriceLowest" value="price-lowest">Price (Lowest)</option>
-            <option id="sortPriceHighest" value="price-highest">Price (Highest)</option>
+            <option id="sortDepartureEarliest" value="time">Departure Time (Earliest)</option>
+            <option id="sortDepartureLatest" value="time-reverse">Departure Time (Latest)</option>
+            <option id="sortPriceLowest" value="price">Price (Lowest)</option>
+            <option id="sortPriceHighest" value="price-reverse">Price (Highest)</option>
           </select>
 
           <button id="modifySearchBtn">Modify Search</button>
@@ -314,7 +472,7 @@
           </div>
         </aside>
         <section class="results-area">
-            <h2 id="resultsHeading">x Flights Found</h2>
+            <h2 id="resultsHeading"></h2>
             <div id="flightResultsContainer"></div>
         </section>
       </main>
