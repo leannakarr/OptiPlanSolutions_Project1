@@ -30,6 +30,10 @@ export default class Flight{
         }
         return Flight.searchedFlightList;
     }
+    
+    static getFlightById(id) {
+        return flightList.find(flight => flight.id === id);
+    }
 
     //sort flight method will take the option of sought by and arainge the flights 
     //defult sort time
