@@ -3,11 +3,11 @@ import Airport from "../Classes/Airport.js";
 import Route from "../Classes/Route.js";
 
 //open login page 
-const loggin = document.getElementById("sign-in");
-if(loggin){
-  loggin.addEventListener("click", () =>{
-    
-  })
+const signInBtn = document.querySelector(".sign-in");
+if (signInBtn) {
+    signInBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+    });
 }
 
 // passenger popup input fieild
