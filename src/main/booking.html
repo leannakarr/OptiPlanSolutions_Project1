@@ -78,9 +78,137 @@
       color: #000;
       cursor: pointer;
     }
-    </style>
+    .booking-area {
+      width: 1120px;
+      margin: 35px auto;
+      display: flex;
+      border: 1px solid #777;
+    }
+
+    .passenger-details {
+      width: 820px;
+      padding: 18px 25px 30px;
+      border-right: 1px solid #777;
+    }
+
+    .passenger-details h1 {
+      color: #008fd3;
+      font-size: 30px;
+      margin: 0 0 30px;
+    }
+
+    .passenger-details h2 {
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 35px;
+      margin-bottom: 18px;
+      align-items: end;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input, select {
+      height: 28px;
+      border: 1px solid #777;
+      border-radius: 8px;
+      padding: 0 6px;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .small {
+      width: 90px;
+    }
+
+    .medium {
+      width: 230px;
+    }
+
+    .large {
+      width: 300px;
+    }
+
+    .phone-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .checkbox-row {
+      font-size: 11px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .summary {
+      width: 300px;
+    }
+
+    .summary h2 {
+      text-align: center;
+      margin: 0;
+      padding: 10px;
+      border-bottom: 1px solid #777;
+      font-size: 22px;
+    }
+
+    .flight-summary {
+      padding: 8px 22px 20px;
+      border-bottom: 1px solid #777;
+    }
+
+    .flight-summary h3 {
+      text-align: center;
+      margin: 0 0 8px;
+    }
+
+    .route {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .airport-code {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .line {
+      width: 80px;
+      border-top: 2px solid #555;
+      margin-top: 18px;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 25px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .total {
+      border-top: 1px solid #777;
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 25px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .total-price {
+      font-size: 24px;
+    }
+  </style>
 </head>
-</html>
 <body>
   <div class="page">
 
@@ -102,3 +230,141 @@
         <button class="sign-in">Sign In</button>
       </div>
     </header>
+        <main class="booking-area">
+
+      <section class="passenger-details">
+        <h1>1. PASSENGER DETAILS</h1>
+        <h2>PASSENGER 1: ADULT</h2>
+
+        <div class="form-row">
+          <label class="field">
+            Title
+            <select class="small">
+              <option>Mr</option>
+              <option>Ms</option>
+              <option>Mrs</option>
+              <option>Miss</option>
+            </select>
+          </label>
+
+          <label class="field">
+            First Name
+            <input class="medium" type="text" value="John">
+          </label>
+
+          <label class="field">
+            Last Name
+            <input class="medium" type="text" value="Smith">
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label class="field">
+            Date of Birth
+            <input class="medium" type="text" value="01/02/1999">
+          </label>
+
+          <label class="field">
+            Gender
+            <select class="medium">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label class="field">
+            Nationality
+            <select class="medium">
+              <option>Australian</option>
+              <option>New Zealand</option>
+              <option>British</option>
+              <option>American</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label class="field">
+            Email Address
+            <input class="large" type="email" value="john.smith001@gmail.com">
+          </label>
+
+          <label class="field">
+            Phone Number
+            <div class="phone-row">
+              <select class="small">
+                <option>+61</option>
+              </select>
+              <input class="medium" type="text" value="0482 320 303">
+            </div>
+          </label>
+
+          <label class="field">
+            Post Code
+            <input class="small" type="text" value="2000">
+          </label>
+        </div>
+
+        <div class="form-row">
+          <div class="checkbox-row">
+            <input type="checkbox" checked>
+            Travelling for Business
+          </div>
+
+          <label class="field">
+            ABN (Optional)
+            <input class="large" type="text" value="11 333 6666 999">
+          </label>
+        </div>
+      </section>
+
+      <aside class="summary">
+        <h2>BOOKING SUMMARY</h2>
+
+        <div class="flight-summary">
+          <h3>Departure Flight</h3>
+
+          <div class="route">
+            <div>
+              <div class="airport-code">SYD</div>
+              <div>Sydney</div>
+              <div>Sat, 23 May</div>
+              <div>2026</div>
+              <div>8:00</div>
+            </div>
+
+            <div class="line"></div>
+
+            <div>
+              <div class="airport-code">MEL</div>
+              <div>Melbourne</div>
+              <div>Sat, 23 May</div>
+              <div>2026</div>
+              <div>9:30</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-row">
+          <span>1 Adult</span>
+          <span>$129.00</span>
+        </div>
+
+        <div class="price-row">
+          <span>Taxes and<br>Fees</span>
+          <span>$41.00</span>
+        </div>
+
+        <div class="total">
+          <span>Total</span>
+          <span class="total-price">AUD $170.00</span>
+        </div>
+      </aside>
+
+    </main>
+
+  </div>
+</body>
+
+</html>
