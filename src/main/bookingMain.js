@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("arivalCode").textContent = route.arrivalAirport.airportCode;
     document.getElementById("arrivalCity").textContent = route.arrivalAirport.city;
     document.getElementById("arrivalTime").textContent = selectedFlight.arrivalTime || "9:30";
-
+    
     const date = new Date(selectedFlight.date);
     const formattedDate = date.toLocaleDateString("en-AU", {
         weekday: "short",
