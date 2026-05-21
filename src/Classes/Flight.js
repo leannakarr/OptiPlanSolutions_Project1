@@ -90,7 +90,7 @@ createFlightCard() {
         </div>
 
         <div class="button-section">
-            <button>Select</button>
+            <button class="selectFlight">Select</button>
             <p class="view-details">View Details⌄</p>
         </div>
     `;
