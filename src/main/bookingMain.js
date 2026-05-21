@@ -1,7 +1,11 @@
 import { loadData } from "../Classes/loadData.js";
 import Flight from "../Classes/Flight.js";
+import Booking from "../Classes/Booking.js";
+import Ticket from "../Classes/Tickets.js";
 
 let loaded = false;
+let currentBooking = null;
+
 window.addEventListener("DOMContentLoaded", async () => {
     if (loaded) return;
 
@@ -49,6 +53,32 @@ window.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("arrivalDate").textContent = formattedDate;
     document.getElementById("departureYear").textContent = date.getFullYear();
     document.getElementById("arrivalYear").textContent = date.getFullYear();
+
+    const searchData = JSON.parse(sessionStorage.getItem("flightSearch"));
+
+    const adultCount = Number(searchData.adults);
+    const childCount = Number(searchData.children);
+    const infantCount = Number(searchData.infants);
+
+    document.getElementById("numberAdults").textContent = adultCount + " Adult ticket";
+    document.getElementById("adultCost").textContent = "$"+(selectedFlight.price *adultCount);
+
+    if(childCount!="0"){
+        document.getElementById("numberChildren").textContent = childCount + " Child ticket";
+        document.getElementById("childrenCost").textContent = "$"+(selectedFlight.price *childCount);
+    }
+    if(infantCount!="0"){
+        document.getElementById("infantNumbers").textContent = infantCount + " Infant ticket";
+        document.getElementById("noCost").textContent = "$0";
+
+    }
+    const numberOfTickets = adultCount + childCount + infantCount;
+    const ticketSubtotal = selectedFlight.price * numberOfTickets;
+    let taxAmount = ticketSubtotal * Booking.tax;
+    document.getElementById("tax").textContent = "$"+taxAmount.toFixed(2);
+    const bookingTotal = ticketSubtotal + taxAmount;
+    document.getElementById("totalPrice").textContent = "$"+bookingTotal.toFixed(2);
+
 });
 
 
