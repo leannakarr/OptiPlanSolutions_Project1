@@ -154,6 +154,7 @@
 
     .summary h2 {
       text-align: center;
+      color:#008fd3;
       margin: 0;
       padding: 10px;
       border-bottom: 1px solid #777;
@@ -234,41 +235,41 @@
 
       <section class="passenger-details">
         <h1>1. PASSENGER DETAILS</h1>
-        <h2>PASSENGER 1: ADULT</h2>
+        <h2 id="passanger type">PASSENGER 1: ADULT</h2>
 
         <div class="form-row">
           <label class="field">
             Title
             <select class="small">
-              <option>Mr</option>
+              <option>Miss</option>
               <option>Ms</option>
               <option>Mrs</option>
-              <option>Miss</option>
+              <option>Mr</option>
             </select>
           </label>
 
           <label class="field">
             First Name
-            <input class="medium" type="text" value="John">
+            <input class="medium" type="text" value="">
           </label>
 
           <label class="field">
             Last Name
-            <input class="medium" type="text" value="Smith">
+            <input class="medium" type="text" value="">
           </label>
         </div>
 
         <div class="form-row">
           <label class="field">
             Date of Birth
-            <input class="medium" type="text" value="01/02/1999">
+            <input class="medium" type="text" value="">
           </label>
 
           <label class="field">
             Gender
             <select class="medium">
-              <option>Male</option>
               <option>Female</option>
+              <option>Male</option>
               <option>Other</option>
             </select>
           </label>
@@ -278,8 +279,6 @@
             <select class="medium">
               <option>Australian</option>
               <option>New Zealand</option>
-              <option>British</option>
-              <option>American</option>
             </select>
           </label>
         </div>
@@ -287,7 +286,7 @@
         <div class="form-row">
           <label class="field">
             Email Address
-            <input class="large" type="email" value="john.smith001@gmail.com">
+            <input class="large" type="email" value="">
           </label>
 
           <label class="field">
@@ -296,25 +295,25 @@
               <select class="small">
                 <option>+61</option>
               </select>
-              <input class="medium" type="text" value="0482 320 303">
+              <input class="medium" type="text" value="">
             </div>
           </label>
 
           <label class="field">
             Post Code
-            <input class="small" type="text" value="2000">
+            <input class="small" type="text" value="">
           </label>
         </div>
 
         <div class="form-row">
           <div class="checkbox-row">
-            <input type="checkbox" checked>
+            <input type="checkbox" id="travelFoBuss">
             Travelling for Business
           </div>
 
-          <label class="field">
-            ABN (Optional)
-            <input class="large" type="text" value="11 333 6666 999">
+          <label class="field" id="abnField">
+            ABN
+            <input class="large" type="text" value="">
           </label>
         </div>
       </section>
@@ -327,21 +326,21 @@
 
           <div class="route">
             <div>
-              <div class="airport-code">SYD</div>
-              <div>Sydney</div>
-              <div>Sat, 23 May</div>
-              <div>2026</div>
-              <div>8:00</div>
+              <div class="airport-code" id="departureCode">SYD</div>
+              <div id="departureCity">Sydney</div>
+              <div id="departureDate">Sat, 23 May</div>
+              <div id="departureYear">2026</div>
+              <div id="departureTime">8:00</div>
             </div>
 
             <div class="line"></div>
 
             <div>
-              <div class="airport-code">MEL</div>
-              <div>Melbourne</div>
-              <div>Sat, 23 May</div>
-              <div>2026</div>
-              <div>9:30</div>
+              <div class="airport-code" id="arivalCode">MEL</div>
+              <div id="arrivalCity">Melbourne</div>
+              <div id="arrivalDate">Sat, 23 May</div>
+              <div id="arrivalYear">2026</div>
+              <div id="arrivalTime">9:30</div>
             </div>
           </div>
         </div>
@@ -366,5 +365,6 @@
 
   </div>
 </body>
+<script type="module" src="bookingMain.js"></script>
 
 </html>
