@@ -99,11 +99,3 @@ if(resetFilters){
         });
     }
 
-//get flight info when click select, open new book interface
-
-if (selectFlight) {
-    selectFlight.addEventListener("click", () => {
-        window.location.href = "booking.html";
-        sessionStorage.setItem("selectedFlight", flight.id);
-    });
-}

@@ -32,7 +32,7 @@ export default class Flight{
     }
     
     static getFlightById(id) {
-        return flightList.find(flight => flight.id === id);
+        return Flight.flightList.find(flight => flight.id === id);
     }
 
     //sort flight method will take the option of sought by and arainge the flights 
@@ -207,6 +207,5 @@ createFlightCard() {
         container.appendChild(f.createFlightCard());
     }
 }
-    //create function to add the booking to the flight object
 }
 
