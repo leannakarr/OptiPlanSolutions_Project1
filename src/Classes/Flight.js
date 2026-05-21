@@ -90,7 +90,7 @@ createFlightCard() {
         </div>
 
         <div class="button-section">
-            <button class="selectFlight">Select</button>
+            <button class="selectFlightBtn">Select</button>
             <p class="view-details">View Details⌄</p>
         </div>
     `;
@@ -108,6 +108,12 @@ createFlightCard() {
             infoCard.style.display = "none";
             viewDetails.textContent = "View Details⌄";
         }
+    });
+
+    const selectFlightBtn = card.querySelector(".selectFlightBtn");
+    selectFlightBtn.addEventListener("click", () => {
+        sessionStorage.setItem("selectedFlight", this.id);
+        window.location.href = "booking.html";
     });
 
     wrapper.appendChild(card);

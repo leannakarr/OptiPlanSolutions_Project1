@@ -100,7 +100,7 @@ if(resetFilters){
     }
 
 //get flight info when click select, open new book interface
-const selectFlight = document.getElementById("selectFilghtBtn");
+
 if (selectFlight) {
     selectFlight.addEventListener("click", () => {
         window.location.href = "booking.html";

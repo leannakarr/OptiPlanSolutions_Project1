@@ -2,6 +2,13 @@ import { loadData } from "../Classes/loadData.js";
 import Airport from "../Classes/Airport.js";
 import Route from "../Classes/Route.js";
 
+//open login page 
+const loggin = document.getElementById("sign-in");
+if(loggin){
+  loggin.addEventListener("click", () =>{
+    
+  })
+}
 
 // passenger popup input fieild
 const passengerBtn = document.getElementById("passengerBtn");
