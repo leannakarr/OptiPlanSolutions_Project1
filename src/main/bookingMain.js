@@ -2,7 +2,6 @@ import { loadData } from "../Classes/loadData.js";
 import Flight from "../Classes/Flight.js";
 
 let loaded = false;
-
 window.addEventListener("DOMContentLoaded", async () => {
     if (loaded) return;
 
@@ -10,7 +9,18 @@ window.addEventListener("DOMContentLoaded", async () => {
     loaded = true;
 
     const selectedFlightId = sessionStorage.getItem("selectedFlight");
+
+    console.log("All flights:", Flight.flightList);
+    console.log("Selected flight ID:", selectedFlightId);
+
+    if (!selectedFlightId) {
+        alert("No selected flight ID found.");
+        return;
+    }
+
     const selectedFlight = Flight.getFlightById(selectedFlightId);
+
+    console.log("Selected flight:", selectedFlight);
 
     if (!selectedFlight) {
         alert("No flight found.");
@@ -21,23 +31,23 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     document.getElementById("departureCode").textContent = route.departureAirport.airportCode;
     document.getElementById("departureCity").textContent = route.departureAirport.city;
-    document.getElementById("departTime").textContent = selectedFlight.time;
+    document.getElementById("departureTime").textContent = selectedFlight.time;
 
-    document.getElementById("arivalCode").textContent = route.arrivalAirport.airportCode;
+    document.getElementById("arrivalCode").textContent = route.arrivalAirport.airportCode;
     document.getElementById("arrivalCity").textContent = route.arrivalAirport.city;
     document.getElementById("arrivalTime").textContent = selectedFlight.arrivalTime || "9:30";
-    
+
     const date = new Date(selectedFlight.date);
+
     const formattedDate = date.toLocaleDateString("en-AU", {
         weekday: "short",
         day: "numeric",
         month: "short"
     });
 
-    document.getElementById("departDate").textContent = formattedDate;
+    document.getElementById("departureDate").textContent = formattedDate;
     document.getElementById("arrivalDate").textContent = formattedDate;
-
-    document.getElementById("departYear").textContent = date.getFullYear();
+    document.getElementById("departureYear").textContent = date.getFullYear();
     document.getElementById("arrivalYear").textContent = date.getFullYear();
 });
 
