@@ -34,7 +34,7 @@
     "time": "12:00",
     "price": 89
   },
-    {
+  {
     "route": "SYD_MEL",
     "aircraft": "VH-FDA",
     "date": "2026-05-27",
@@ -51,9 +51,16 @@
   {
     "route": "SYD_OOL",
     "aircraft": "VH-FDC",
-    "date": "2026-05-10",
+    "date": "2026-05-30",
     "time": "10:15",
     "price": 109
+  },
+  {
+    "route": "SYD_OOL",
+    "aircraft": "VH-FDC",
+    "date": "2026-05-30",
+    "time": "21:15",
+    "price": 149
   },
   {
     "route": "OOL_SYD",
@@ -61,6 +68,20 @@
     "date": "2026-05-10",
     "time": "13:05",
     "price": 115
+  },
+  {
+    "route": "ADL_PER",
+    "aircraft": "VH-FDB",
+    "date": "2026-06-02",
+    "time": "13:05",
+    "price": 115
+  },
+  {
+    "route": "ADL_PER",
+    "aircraft": "VH-FDA",
+    "date": "2026-06-02",
+    "time": "7:15",
+    "price": 95
   },
   {
     "route": "SYD_CNS",

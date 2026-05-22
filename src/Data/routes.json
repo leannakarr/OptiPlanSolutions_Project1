@@ -78,5 +78,10 @@
         "departureAirport": "TSV", 
         "arrivalAirport": "SYD", 
         "expectedTime": "02:40" 
+    },
+    {
+        "departureAirport": "ADL", 
+        "arrivalAirport": "PER", 
+        "expectedTime": "03:30" 
     }
 ]
