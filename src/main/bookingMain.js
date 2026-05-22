@@ -218,9 +218,9 @@ function setupPopup(buttonId, popupId) {
   });
 }
 
-setupPopup("openSeatPopup", "seatPopup");
-setupPopup("openBagPopup", "bagPopup");
-setupPopup("openMealPopup", "mealPopup");
+setupPopup("addSeatSelect", "seatPopup");
+setupPopup("addBagSelect", "bags");
+setupPopup("addMeanSelect", "mealPopup");
 
 document.addEventListener("click", () => {
   document.querySelectorAll(".addon-popup").forEach(popup => {
