@@ -19,7 +19,24 @@ export default class Flight{
         this.bookingList = [];
         this.currentWeight = 0; 
         Flight.flightList.push(this);
+        this.arrivalTime = Flight.addTimes(this.time, this.route.expectedTime);
     } 
+
+    //add 
+    static addTimes(time, duration) {
+        const [h1, m1] = time.split(":").map(Number);
+        const [h2, m2] = duration.split(":").map(Number);
+
+        let totalMinutes = h1 * 60 + m1 + h2 * 60 + m2;
+
+        // wrap around 24h
+        totalMinutes %= 1440;
+
+        const finalH = String(Math.floor(totalMinutes / 60)).padStart(2, "0");
+        const finalM = String(totalMinutes % 60).padStart(2, "0");
+
+        return `${finalH}:${finalM}`;
+    }
 
     static getSearchedFlight(route, date){
         Flight.searchedFlightList = [];
@@ -83,7 +100,7 @@ createFlightCard() {
             </div>
 
             <div class="time-block">
-                <h2>09:30</h2>
+                <h2>${this.arrivalTime}</h2>
                 <p>${this.route.arrivalAirport.airportCode}</p>
             </div>
         </div>
