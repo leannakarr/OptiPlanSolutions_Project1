@@ -225,9 +225,9 @@ console.log("Tickets:", tickets);
     clearPassengerFields();
     updatePassengerHeading();
   } else {
-    booking = new Booking(selectedFlight, null, tickets)
-    sessionStorage.setItem("passengers", JSON.stringify(tickets));
-    window.location.href = "payment.html";
+  const booking = new Booking(selectedFlight, null, tickets);
+  sessionStorage.setItem("bookingSummary", JSON.stringify(Booking.toJSON(booking)));
+  window.location.href = "bookingSummary.html";
   }
 });
 

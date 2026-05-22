@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booking Summary</title>
+  <script src="https://kit.fontawesome.com/a7f82b9220.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #222;
+      background: #f4f4f4;
+    }
+
+    .page {
+      border: 3px solid #222;
+      min-height: 100vh;
+    }
+
+    header {
+      height: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid #999;
+      background-color: white;
+    }
+
+    .logo {
+      width: 300px;
+      height: 95px;
+      display: flex;
+      align-items: center;
+      margin-left: -100px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      color: #000;
+      font-weight: bold;
+      font-size: 14px;
+      margin-left: -100px;
+    }
+
+    .login {
+      text-align: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: #000;
+      min-width: 70px;
+    }
+
+    .login i {
+      font-size: 22px;
+      color: black;
+      margin: 6px 0;
+    }
+
+    .sign-in {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-weight: bold;
+      font-size: 11px;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .main-content {
+      max-width: 900px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+
+    .summary-box,
+    .payment-box {
+      background: white;
+      border: 2px solid #777;
+      border-radius: 20px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      color: #00a6d6;
+      margin-top: 0;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .flight-route {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      margin: 25px 0;
+    }
+
+    .airport-code {
+      font-size: 34px;
+      font-weight: bold;
+      color: #00a6d6;
+    }
+
+    .arrow {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .ticket-card {
+      border: 1px solid #aaa;
+      border-radius: 15px;
+      padding: 15px;
+      margin: 15px 0;
+      background: #fafafa;
+    }
+
+    .ticket-grid,
+    .receipt-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .receipt-row {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+
+    .receipt-row span:last-child {
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .total-row {
+      font-size: 22px;
+      color: #00a6d6;
+      border-bottom: none;
+    }
+
+    .pay-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: #00a6d6;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header>
+      <div class="logo">
+        <img src="FlyDreamAir.png" alt="Logo">
+      </div>
+
+      <nav>
+        <span id="returnSearchBar">Search Flights</span>
+        <span>Manage Bookings</span>
+        <span>Check-In</span>
+        <span>Support</span>
+      </nav>
+
+      <div class="login">
+        <div>A Member?</div>
+        <i class="fa-solid fa-user"></i>
+        <button class="sign-in">Sign In</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+
+      <section class="summary-box">
+        <h1>Booking Summary</h1>
+        <div id="bookingDetails"></div>
+      </section>
+
+      <section class="payment-box">
+        <h1>Payment Summary</h1>
+        <div id="paymentSummary"></div>
+        <button class="pay-button">Continue to Payment</button>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    const booking = JSON.parse(sessionStorage.getItem("bookingSummary"));
+
+    const bookingDetails = document.getElementById("bookingDetails");
+    const paymentSummary = document.getElementById("paymentSummary");
+
+    if (!booking) {
+      bookingDetails.innerHTML = "<p>No booking summary found.</p>";
+      paymentSummary.innerHTML = "";
+    } else {
+      let ticketHTML = "";
+
+      booking.tickets.forEach((ticket, index) => {
+        ticketHTML += `
+          <div class="ticket-card">
+            <h2>Ticket ${index + 1}</h2>
+
+            <div class="ticket-grid">
+              <p><strong>Passenger:</strong></p>
+              <p>${ticket.passenger.firstName} ${ticket.passenger.lastName}</p>
+
+              <p><strong>Email:</strong></p>
+              <p>${ticket.passenger.email}</p>
+
+              <p><strong>Seat:</strong></p>
+              <p>${ticket.seat ? ticket.seat : "Not selected"}</p>
+
+              <p><strong>Luggage:</strong></p>
+              <p>${ticket.luggage}kg</p>
+
+              <p><strong>Food:</strong></p>
+              <p>${ticket.foodItems.length > 0 ? ticket.foodItems.join(", ") : "None"}</p>
+
+              <p><strong>Drinks:</strong></p>
+              <p>${ticket.drinkItems.length > 0 ? ticket.drinkItems.join(", ") : "None"}</p>
+
+              <p><strong>Ticket Cost:</strong></p>
+              <p>$${Number(ticket.cost).toFixed(2)}</p>
+            </div>
+          </div>
+        `;
+      });
+
+      bookingDetails.innerHTML = `
+        <p><strong>Booking ID:</strong> ${booking.bookingId}</p>
+        <p><strong>Status:</strong> ${booking.status}</p>
+
+        <div class="flight-route">
+          <div>
+            <div class="airport-code">${booking.flight.departureCode}</div>
+            <p>${booking.flight.departureCity}</p>
+          </div>
+
+          <div class="arrow">✈</div>
+
+          <div>
+            <div class="airport-code">${booking.flight.arrivalCode}</div>
+            <p>${booking.flight.arrivalCity}</p>
+          </div>
+        </div>
+
+        <p><strong>Date:</strong> ${booking.flight.date}</p>
+        <p><strong>Time:</strong> ${booking.flight.time}</p>
+        <p><strong>Passengers:</strong> ${booking.tickets.length}</p>
+
+        ${ticketHTML}
+      `;
+
+      let ticketSubtotal = 0;
+
+      booking.tickets.forEach(ticket => {
+        ticketSubtotal += Number(ticket.cost);
+      });
+
+      const tax = ticketSubtotal * 0.14;
+      const total = ticketSubtotal + tax;
+
+      paymentSummary.innerHTML = `
+        <div class="receipt-row">
+          <span>Ticket subtotal</span>
+          <span>$${ticketSubtotal.toFixed(2)}</span>
+        </div>
+
+        <div class="receipt-row">
+          <span>Tax</span>
+          <span>$${tax.toFixed(2)}</span>
+        </div>
+
+        <div class="receipt-row total-row">
+          <span>Total due</span>
+          <span>$${total.toFixed(2)}</span>
+        </div>
+
+        <p><strong>Payment status:</strong> Pending Payment</p>
+      `;
+    }
+
+    const searchBarBtn = document.getElementById("returnSearchBar");
+    if (searchBarBtn) {
+      searchBarBtn.addEventListener("click", () => {
+        window.location.href = "searchBar.html";
+      });
+    }
+
+    const signInBtn = document.querySelector(".sign-in");
+    if (signInBtn) {
+      signInBtn.addEventListener("click", () => {
+        window.location.href = "login.html";
+      });
+    }
+  </script>
+
+</body>
+</html>

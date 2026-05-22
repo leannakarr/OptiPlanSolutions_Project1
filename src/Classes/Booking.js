@@ -43,4 +43,58 @@ export default class Booking {
       booking => booking.bookingId === bookingId
     );
   }
+
+  static toJSON(booking) {
+
+    return {
+        bookingId: booking.bookingId,
+        status: booking.status,
+
+        flight: {
+            id: booking.flight.id,
+            date: booking.flight.date,
+            time: booking.flight.time,
+            price: booking.flight.price,
+
+            departureCode:
+                booking.flight.route.departureAirport.airportCode,
+
+            departureCity:
+                booking.flight.route.departureAirport.city,
+
+            arrivalCode:
+                booking.flight.route.arrivalAirport.airportCode,
+
+            arrivalCity:
+                booking.flight.route.arrivalAirport.city
+        },
+
+        tickets: booking.tickets.map(ticket => ({
+
+            passenger: {
+                firstName: ticket.passenger.firstName,
+                lastName: ticket.passenger.lastName,
+                email: ticket.passenger.email
+            },
+
+            seat: ticket.seat
+                ? ticket.seat.seatNumber || ticket.seat.value || "Selected"
+                : null,
+
+            luggage: ticket.luggage,
+
+            foodItems: ticket.foodItems,
+
+            drinkItems: ticket.drinkItems,
+
+            aditionalAssistance:
+                ticket.aditionalAssistance,
+
+            cost: ticket.ticketCost()
+
+        })),
+
+        totalCost: booking.bookingCost()
+    };
+}
 }
