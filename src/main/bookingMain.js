@@ -113,3 +113,19 @@ if (signInBtn) {
         window.location.href = "login.html";
     });
 }
+
+const firstName = document.getElementById("firstName");
+const lastName = document.getElementById("lastName");
+const DOB = document.getElementById("DOB");
+const phone = document.getElementById("phone");
+const postCode = document.getElementById("postCode");
+
+
+const createTicket = document.getElementById("submintInfo");
+
+if(createTicket){
+    createTicket.addEventListener("click", () =>{
+        pfirstName = firstName.ariaValueMax()
+
+    })
+}
