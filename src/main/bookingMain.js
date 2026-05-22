@@ -221,14 +221,28 @@ console.log("Tickets:", tickets);
 
 
   if (currentPassengerNumber < totalPassengers) {
-    currentPassengerNumber++;
-    clearPassengerFields();
-    updatePassengerHeading();
+  currentPassengerNumber++;
+
+  clearPassengerFields();
+  updatePassengerHeading();
+
+  // If the next passenger is the last one, change button text
+  if (currentPassengerNumber === totalPassengers) {
+    submitBtn.textContent = "Submit Booking";
   } else {
-  const booking = new Booking(selectedFlight, null, tickets);
-  sessionStorage.setItem("bookingSummary", JSON.stringify(Booking.toJSON(booking)));
-  window.location.href = "bookingSummary.html";
+    submitBtn.textContent = "Confirm Ticket Info";
   }
+
+} else {
+  const booking = new Booking(selectedFlight, null, tickets);
+
+  sessionStorage.setItem(
+    "bookingSummary",
+    JSON.stringify(Booking.toJSON(booking))
+  );
+
+  window.location.href = "bookingSummary.html";
+}
 });
 
 function setupPopup(buttonId, popupId) {
