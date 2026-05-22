@@ -176,10 +176,24 @@ createTicket.addEventListener("click", () => {
   //update to ticket list and push ticket with passager object. 
   const selectedFlightId = sessionStorage.getItem("selectedFlight");
   const selectedFlight = Flight.getFlightById(selectedFlightId);
-  const ticket = new Ticket(passenger, selectedFlight, null, null, null, null);
+  const ticket = new Ticket(passenger, selectedFlight, null, null, [], []);
   tickets.push(ticket);
 
-  console.log("Tickets:", ticket);
+  
+  const bagSelect = document.querySelector('input[name="bagWeight"]:checked');
+  return selected ? selected.value : null;
+
+
+// Example:
+console.log("Selected bag:", getSelectedBag());
+
+
+//display ticket summary card
+const container = document.getElementById("ticketSummaryContainer");
+container.appendChild(ticket.createTicketSummaryCard());
+
+console.log("Tickets:", tickets);
+
 
   if (currentPassengerNumber < totalPassengers) {
     currentPassengerNumber++;
@@ -218,12 +232,13 @@ function setupPopup(buttonId, popupId) {
   });
 }
 
-setupPopup("openSeatPopup", "seatPopup");
-setupPopup("openBagPopup", "bagPopup");
-setupPopup("openMealPopup", "mealPopup");
+setupPopup("addSeatSelect", "seatPopup");
+setupPopup("addBagSelect", "bags");
+setupPopup("addMeanSelect", "mealPopup");
 
 document.addEventListener("click", () => {
   document.querySelectorAll(".addon-popup").forEach(popup => {
     popup.classList.remove("show");
   });
 });
+
