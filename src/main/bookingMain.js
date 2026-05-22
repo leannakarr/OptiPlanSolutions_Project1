@@ -2,6 +2,7 @@ import { loadData } from "../Classes/loadData.js";
 import Flight from "../Classes/Flight.js";
 import Booking from "../Classes/Booking.js";
 import Ticket from "../Classes/Tickets.js";
+import Passenger from "../Classes/Passenger.js";
 
 let loaded = false;
 let currentBooking = null;
@@ -112,4 +113,32 @@ if (signInBtn) {
     signInBtn.addEventListener("click", () => {
         window.location.href = "login.html";
     });
+}
+
+const passagerList =[];
+const createTicket = document.getElementById("submintInfo");
+
+
+if (createTicket) {
+  createTicket.addEventListener("click", () => {
+    const title = document.getElementById("title").value;
+    const firstName = document.getElementById("firstName").value;
+    const lastName = document.getElementById("lastName").value;
+    const DOB = document.getElementById("DOB").value;
+    const gender = document.getElementById("gender").value;
+    const nationality = document.getElementById("nationality").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const postCode = document.getElementById("postCode").value;
+
+    const travelForBusiness = document.getElementById("travelFoBuss").checked;
+    const ABN = travelForBusiness
+      ? document.getElementById("ABN").value
+      : null;
+    const passanger= new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
+    Passenger.passagerList.push(passenger);
+
+    console.log(passenger);
+    console.log(Passenger.passagerList);
+  });
 }

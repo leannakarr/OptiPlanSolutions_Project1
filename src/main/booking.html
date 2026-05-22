@@ -319,7 +319,7 @@
         <div class="form-row">
           <label class="field">
             Title
-            <select class="small">
+            <select class="small" id="title">
               <option>Miss</option>
               <option>Ms</option>
               <option>Mrs</option>
@@ -329,31 +329,31 @@
 
           <label class="field">
             First Name
-            <input class="medium" type="text" value="">
+            <input class="medium" type="text" value="" id="firstName">
           </label>
 
           <label class="field">
             Last Name
-            <input class="medium" type="text" value="">
+            <input class="medium" type="text" value="" id="lastName">
           </label>
         </div>
 
         <div class="form-row">
           <label class="field">
             Date of Birth
-            <input class="medium" type="text" value="">
+            <input class="medium" type="text" value="" id="DOB">
           </label>
 
           <label class="field">
             Gender
-            <select class="medium">
+            <select class="medium" id="gender">
               <option>Female</option>
               <option>Male</option>
               <option>Other</option>
             </select>
           </label>
 
-          <label class="field">
+          <label class="field" id="nationality">
             Nationality
             <select class="medium">
               <option>Australian</option>
@@ -365,7 +365,7 @@
         <div class="form-row">
           <label class="field">
             Email Address
-            <input class="large" type="email" value="">
+            <input class="large" type="email" value="" id="email">
           </label>
 
           <label class="field">
@@ -374,13 +374,13 @@
               <select class="small">
                 <option>+61</option>
               </select>
-              <input class="medium" type="text" value="">
+              <input class="medium" type="text" value="" id="phone">
             </div>
           </label>
 
           <label class="field">
             Post Code
-            <input class="small" type="text" value="">
+            <input class="small" type="text" value="" id="postCode">
           </label>
         </div>
 
@@ -392,7 +392,7 @@
 
           <label class="field" id="abnField">
             ABN
-            <input class="large" type="text" value="">
+            <input class="large" type="text" value="" id="ABN">
           </label>
         </div>
       </section>
@@ -495,7 +495,7 @@
     <p>Review the details before proceeding with payment</p>
   </div>
 
-  <button class="continue-button">Continue to payment ━▶</button>
+  <button class="continue-button" id="submitInfo">Continue to payment ━▶</button>
 </section>
 
   </div>

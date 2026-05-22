@@ -1,4 +1,6 @@
 export default class Passenger{/* passanger class has all passenger information per passanger*/
+
+    static passagerList = [];
     constructor(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN=null){
         this.title = title;
         this.firstName = firstName;
