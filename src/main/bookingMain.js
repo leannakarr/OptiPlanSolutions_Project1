@@ -116,7 +116,7 @@ if (signInBtn) {
 }
 
 const passagerList =[];
-const createTicket = document.getElementById("submintInfo");
+const createTicket = document.getElementById("submitInfo");
 
 
 if (createTicket) {
@@ -135,7 +135,7 @@ if (createTicket) {
     const ABN = travelForBusiness
       ? document.getElementById("ABN").value
       : null;
-    const passanger= new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
+    const passenger = new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
     Passenger.passagerList.push(passenger);
 
     console.log(passenger);
