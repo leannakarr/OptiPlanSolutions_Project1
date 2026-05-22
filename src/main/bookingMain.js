@@ -116,7 +116,7 @@ if (signInBtn) {
 }
 
 let currentPassengerNumber = 1;
-const passengers = [];
+const tickets = [];
 
 const searchData = JSON.parse(sessionStorage.getItem("flightSearch"));
 
@@ -173,17 +173,20 @@ createTicket.addEventListener("click", () => {
     : null;
 
   const passenger = new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
+  //update to ticket list and push ticket with passager object. 
+  const selectedFlightId = sessionStorage.getItem("selectedFlight");
+  const selectedFlight = Flight.getFlightById(selectedFlightId);
+  const ticket = new Ticket(passenger, selectedFlight, null, null, null, null);
+  tickets.push(ticket);
 
-  passengers.push(passenger);
-
-  console.log("Passengers:", passengers);
+  console.log("Tickets:", ticket);
 
   if (currentPassengerNumber < totalPassengers) {
     currentPassengerNumber++;
     clearPassengerFields();
     updatePassengerHeading();
   } else {
-    sessionStorage.setItem("passengers", JSON.stringify(passengers));
+    sessionStorage.setItem("passengers", JSON.stringify(tickets));
     window.location.href = "payment.html";
   }
 });
