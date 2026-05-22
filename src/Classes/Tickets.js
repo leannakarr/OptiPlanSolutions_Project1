@@ -9,9 +9,9 @@ export default class Ticket {
     this.drinkItems = drinkItems;
     this.aditionalAssistance = aditionalAssistance;
 
-    if (this.seat) {
-      this.seat.bookSeat();
-    }
+    //if (this.seat) {
+      //this.seat.bookSeat();
+    //}
   }
 
   ticketCost() {

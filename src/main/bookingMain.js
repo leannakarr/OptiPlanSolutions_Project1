@@ -118,6 +118,8 @@ if (signInBtn) {
 let currentPassengerNumber = 1;
 const tickets = [];
 
+
+
 const searchData = JSON.parse(sessionStorage.getItem("flightSearch"));
 
 const adultCount = Number(searchData.adults);
@@ -156,6 +158,8 @@ function clearPassengerFields() {
 
 updatePassengerHeading();
 
+let inflightServicesTotal = 0;
+
 createTicket.addEventListener("click", () => {
   const title = document.getElementById("title").value;
   const firstName = document.getElementById("firstName").value;
@@ -172,20 +176,41 @@ createTicket.addEventListener("click", () => {
     ? document.getElementById("ABN").value
     : null;
 
+  const seatInput = document.getElementById("seat");
+  const seatSelect = seatInput.checked ? seatInput : null;
+
+  const bagInput = document.querySelector('input[name="bagWeight"]:checked');
+  const bagSelect = bagInput ? bagInput.value : "20";
+
+  const foodInput = document.getElementById("food");
+  const mealSelect = foodInput.checked ? ["Meal"] : [];
+
+  const drinkInput = document.getElementById("drink");
+  const drinkSelect = drinkInput.checked ? ["Drink"] : [];
+
   const passenger = new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
   //update to ticket list and push ticket with passager object. 
   const selectedFlightId = sessionStorage.getItem("selectedFlight");
   const selectedFlight = Flight.getFlightById(selectedFlightId);
-  const ticket = new Ticket(passenger, selectedFlight, null, null, [], []);
+  const ticket = new Ticket(passenger, selectedFlight, seatSelect, bagSelect, [], []);
   tickets.push(ticket);
 
-  
-  const bagSelect = document.querySelector('input[name="bagWeight"]:checked');
-  return selected ? selected.value : null;
+ 
+ const serviceCost = ticket.ticketCost() - selectedFlight.price;
+ inflightServicesTotal += serviceCost;
 
+  const originalTicketSubtotal = selectedFlight.price * totalPassengers;
+  const newSubtotal = originalTicketSubtotal + inflightServicesTotal;
+  const taxAmount = newSubtotal * Booking.tax;
+  const newTotal = newSubtotal + taxAmount;
 
-// Example:
-console.log("Selected bag:", getSelectedBag());
+  document.getElementById("tax").textContent = "$" + taxAmount.toFixed(2);
+  document.getElementById("totalPrice").textContent = "$" + newTotal.toFixed(2);
+
+  const servicesField = document.getElementById("inflightServicesCost");
+  if (servicesField) {
+    servicesField.textContent = "$" + inflightServicesTotal.toFixed(2);
+  }
 
 
 //display ticket summary card
