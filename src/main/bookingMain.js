@@ -186,7 +186,44 @@ createTicket.addEventListener("click", () => {
     clearPassengerFields();
     updatePassengerHeading();
   } else {
+    booking = new Booking(selectedFlight, null, tickets)
     sessionStorage.setItem("passengers", JSON.stringify(tickets));
     window.location.href = "payment.html";
   }
+});
+
+function setupPopup(buttonId, popupId) {
+  const button = document.getElementById(buttonId);
+  const popup = document.getElementById(popupId);
+
+  if (!button || !popup) return;
+
+  button.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    document.querySelectorAll(".addon-popup").forEach(p => {
+      p.classList.remove("show");
+    });
+
+    const rect = button.getBoundingClientRect();
+
+    popup.style.left = rect.left + "px";
+    popup.style.top = rect.bottom + 8 + "px";
+
+    popup.classList.add("show");
+  });
+
+  popup.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+}
+
+setupPopup("openSeatPopup", "seatPopup");
+setupPopup("openBagPopup", "bagPopup");
+setupPopup("openMealPopup", "mealPopup");
+
+document.addEventListener("click", () => {
+  document.querySelectorAll(".addon-popup").forEach(popup => {
+    popup.classList.remove("show");
+  });
 });

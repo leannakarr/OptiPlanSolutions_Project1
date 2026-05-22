@@ -21,7 +21,7 @@ export default class Ticket {
     }
 
     if (this.luggage == "20") {
-      total += 30;
+      total += 0;
     } else if (this.luggage == "30") {
       total += 53;
     } else if (this.luggage == "40") {

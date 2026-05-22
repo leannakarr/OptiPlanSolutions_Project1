@@ -286,7 +286,39 @@
   padding: 8px 35px 8px 12px;
   font-size: 16px;
   cursor: pointer;
+  }
+  .addon-popup {
+  display: none;
+  position: fixed;
+  background: white;
+  border: 2px solid #777;
+  border-radius: 15px;
+  padding: 15px;
+  width: 180px;
+  box-shadow: 0 4px 12px #999;
+  z-index: 100;
 }
+
+.addon-popup.show {
+  display: block;
+}
+
+.addon-popup h3 {
+  margin: 0 0 10px;
+  color: #008fd3;
+  font-size: 18px;
+}
+
+.addon-popup button {
+  display: block;
+  width: 100%;
+  margin: 6px 0;
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  cursor: pointer;
+}
+   
   </style>
 </head>
 <body>
@@ -460,9 +492,13 @@
         <strong>SEAT SELECTION</strong>
         Choose your preferred seat
         <br>
-        <button>Add</button>
+        <button id="addSeatSelect">Add</button>
       </div>
     </div>
+    <div class="addon-popup" id="seatPopup">
+      <h3>Seat Selection</h3>
+        <button id="addSeat">Add seat</button>
+      </div>
 
     <div class="add-on-card">
       <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-suitcase" viewBox="0 0 16 16">
@@ -473,8 +509,14 @@
         <strong>BAGGAGE</strong>
         Add extra baggage allowance
         <br>
-        <button>Add</button>
+        <button id="addBagSelect">Add</button>
       </div>
+    </div>
+    <div class="addon-popup" id="bags">
+      <h3>Bag Selection</h3>
+      <button id="20kg">20kg</button>
+      <button id="bag30">30kg</button>
+      <button id="bag40">40kg</button>
     </div>
 
     <div class="add-on-card">
@@ -483,7 +525,12 @@
         <strong>IN-FLIGHT MEALS</strong>
         Enjoy a variety of meals
         <br>
-        <button>Add</button>
+        <button id="addMeanSelect">Add</button>
+      </div>
+      <div class="addon-popup" id="mealPopup">
+        <h3>Food & Drink</h3>
+        <button>Add food</button>
+        <button>Add drink</button>
       </div>
     </div>
   </div>
