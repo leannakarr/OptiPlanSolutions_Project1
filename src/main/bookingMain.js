@@ -115,30 +115,75 @@ if (signInBtn) {
     });
 }
 
-const passagerList =[];
+let currentPassengerNumber = 1;
+const passengers = [];
+
+const searchData = JSON.parse(sessionStorage.getItem("flightSearch"));
+
+const adultCount = Number(searchData.adults);
+const childCount = Number(searchData.children);
+const infantCount = Number(searchData.infants);
+
+const totalPassengers = adultCount + childCount + infantCount;
+
+const passengerHeading = document.getElementById("passengerType");
 const createTicket = document.getElementById("submitInfo");
 
-
-if (createTicket) {
-  createTicket.addEventListener("click", () => {
-    const title = document.getElementById("title").value;
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const DOB = document.getElementById("DOB").value;
-    const gender = document.getElementById("gender").value;
-    const nationality = document.getElementById("nationality").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const postCode = document.getElementById("postCode").value;
-
-    const travelForBusiness = document.getElementById("travelFoBuss").checked;
-    const ABN = travelForBusiness
-      ? document.getElementById("ABN").value
-      : null;
-    const passenger = new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
-    Passenger.passagerList.push(passenger);
-
-    console.log(passenger);
-    console.log(Passenger.passagerList);
-  });
+function getPassengerType(number) {
+  if (number <= adultCount) {
+    return "ADULT";
+  } else if (number <= adultCount + childCount) {
+    return "CHILD";
+  } else {
+    return "INFANT";
+  }
 }
+
+function updatePassengerHeading() {
+  passengerHeading.textContent = `PASSENGER ${currentPassengerNumber}: ${getPassengerType(currentPassengerNumber)}`;
+}
+
+function clearPassengerFields() {
+  document.getElementById("firstName").value = "";
+  document.getElementById("lastName").value = "";
+  document.getElementById("DOB").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("postCode").value = "";
+  document.getElementById("ABN").value = "";
+  document.getElementById("travelFoBuss").checked = false;
+}
+
+updatePassengerHeading();
+
+createTicket.addEventListener("click", () => {
+  const title = document.getElementById("title").value;
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const DOB = document.getElementById("DOB").value;
+  const gender = document.getElementById("gender").value;
+  const nationality = document.querySelector("#nationality select").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const postCode = document.getElementById("postCode").value;
+
+  const travelForBusiness = document.getElementById("travelFoBuss").checked;
+  const ABN = travelForBusiness
+    ? document.getElementById("ABN").value
+    : null;
+
+  const passenger = new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
+
+  passengers.push(passenger);
+
+  console.log("Passengers:", passengers);
+
+  if (currentPassengerNumber < totalPassengers) {
+    currentPassengerNumber++;
+    clearPassengerFields();
+    updatePassengerHeading();
+  } else {
+    sessionStorage.setItem("passengers", JSON.stringify(passengers));
+    window.location.href = "payment.html";
+  }
+});
