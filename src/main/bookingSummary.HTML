@@ -230,7 +230,7 @@
               <p>${ticket.seat ? ticket.seat : "Not selected"}</p>
 
               <p><strong>Luggage:</strong></p>
-              <p>${ticket.luggage}kg</p>
+              <p>${ticket.luggage == null ? "0kg" : ticket.luggage + "kg"}</p>
 
               <p><strong>Food:</strong></p>
               <p>${ticket.foodItems.length > 0 ? ticket.foodItems.join(", ") : "None"}</p>
