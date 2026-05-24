@@ -22,7 +22,7 @@ export default class Ticket {
     }
 
     if (this.luggage == "20") {
-      total += 0;
+      total += 10;
     } else if (this.luggage == "30") {
       total += 53;
     } else if (this.luggage == "40") {
@@ -109,8 +109,12 @@ export default class Ticket {
         </div>
 
         <div>
-          <strong>Luggage</strong>
-          <p>${this.luggage}kg</p>
+        <strong>Luggage</strong>
+        <p>${
+          this.luggage == null
+          ? "7kg carry on"
+          : this.luggage + "kg + 7kg carry on"
+        }</p>
         </div>
 
         <div>

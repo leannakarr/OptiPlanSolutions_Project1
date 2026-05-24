@@ -117,6 +117,7 @@ if (signInBtn) {
 
 let currentPassengerNumber = 1;
 const tickets = [];
+let readyToContinue = false;
 
 
 
@@ -130,6 +131,9 @@ const totalPassengers = adultCount + childCount + infantCount;
 
 const passengerHeading = document.getElementById("passengerType");
 const createTicket = document.getElementById("submitInfo");
+const toPayment = document.getElementById("toPayment");
+
+toPayment.style.display = "none";
 
 function getPassengerType(number) {
   if (number <= adultCount) {
@@ -154,6 +158,13 @@ function clearPassengerFields() {
   document.getElementById("postCode").value = "";
   document.getElementById("ABN").value = "";
   document.getElementById("travelFoBuss").checked = false;
+  document.getElementById("seat").checked = false;
+  document.getElementById("food").checked = false;
+  document.getElementById("drink").checked = false;
+
+  document.querySelectorAll('input[name="bagWeight"]').forEach(bag => {
+    bag.checked = false;
+});
 }
 
 updatePassengerHeading();
@@ -161,6 +172,7 @@ updatePassengerHeading();
 let inflightServicesTotal = 0;
 
 createTicket.addEventListener("click", () => {
+
   const title = document.getElementById("title").value;
   const firstName = document.getElementById("firstName").value;
   const lastName = document.getElementById("lastName").value;
@@ -180,7 +192,7 @@ createTicket.addEventListener("click", () => {
   const seatSelect = seatInput.checked ? seatInput : null;
 
   const bagInput = document.querySelector('input[name="bagWeight"]:checked');
-  const bagSelect = bagInput ? bagInput.value : "20";
+  const bagSelect = bagInput ? bagInput.value : null;
 
   const foodInput = document.getElementById("food");
   const mealSelect = foodInput.checked ? ["Meal"] : [];
@@ -189,15 +201,15 @@ createTicket.addEventListener("click", () => {
   const drinkSelect = drinkInput.checked ? ["Drink"] : [];
 
   const passenger = new Passenger(title, firstName, lastName, DOB, gender, nationality, email, phone, postCode, ABN);
-  //update to ticket list and push ticket with passager object. 
+
   const selectedFlightId = sessionStorage.getItem("selectedFlight");
   const selectedFlight = Flight.getFlightById(selectedFlightId);
-  const ticket = new Ticket(passenger, selectedFlight, seatSelect, bagSelect, [], []);
+
+  const ticket = new Ticket(passenger, selectedFlight, seatSelect, bagSelect, mealSelect, drinkSelect);
   tickets.push(ticket);
 
- 
- const serviceCost = ticket.ticketCost() - selectedFlight.price;
- inflightServicesTotal += serviceCost;
+  const serviceCost = ticket.ticketCost() - selectedFlight.price;
+  inflightServicesTotal += serviceCost;
 
   const originalTicketSubtotal = selectedFlight.price * totalPassengers;
   const newSubtotal = originalTicketSubtotal + inflightServicesTotal;
@@ -212,28 +224,29 @@ createTicket.addEventListener("click", () => {
     servicesField.textContent = "$" + inflightServicesTotal.toFixed(2);
   }
 
+  const container = document.getElementById("ticketSummaryContainer");
+  container.appendChild(ticket.createTicketSummaryCard());
 
-//display ticket summary card
-const container = document.getElementById("ticketSummaryContainer");
-container.appendChild(ticket.createTicketSummaryCard());
+    console.log("Tickets:", tickets);
 
-console.log("Tickets:", tickets);
+  if (tickets.length === totalPassengers) {
+    createTicket.style.display = "none";
+    toPayment.style.display = "inline-block";
+    return;
+  }
 
-
-  if (currentPassengerNumber < totalPassengers) {
   currentPassengerNumber++;
 
   clearPassengerFields();
   updatePassengerHeading();
 
-  // If the next passenger is the last one, change button text
-  if (currentPassengerNumber === totalPassengers) {
-    submitBtn.textContent = "Submit Booking";
-  } else {
-    submitBtn.textContent = "Confirm Ticket Info";
-  }
+  createTicket.textContent = "Next";
+});
 
-} else {
+toPayment.addEventListener("click", () => {
+  const selectedFlightId = sessionStorage.getItem("selectedFlight");
+  const selectedFlight = Flight.getFlightById(selectedFlightId);
+
   const booking = new Booking(selectedFlight, null, tickets);
 
   sessionStorage.setItem(
@@ -242,7 +255,6 @@ console.log("Tickets:", tickets);
   );
 
   window.location.href = "bookingSummary.html";
-}
 });
 
 function setupPopup(buttonId, popupId) {
